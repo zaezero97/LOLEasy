@@ -20,9 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
         let tabBarController = UITabBarController()
-        self.window?.rootViewController = tabBarController
         self.appCoordinator = AppCoordinator(tabbarController: tabBarController)
         self.appCoordinator.start()
+        
+        self.window?.rootViewController = tabBarController
         self.window?.backgroundColor = .systemBackground
         self.window?.makeKeyAndVisible()
     }

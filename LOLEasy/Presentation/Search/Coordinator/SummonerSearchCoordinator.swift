@@ -21,8 +21,9 @@ final class DefaultSummonerSearchCoordinator: SummonerSearchCoordinator {
     
     func start() {
         let vc = SummonerSearchViewController()
+     
         self.navigationController.pushViewController(vc, animated: true)
-        
+        print(navigationController.viewControllers)
         //TODO: 의존성 주입
     }
     

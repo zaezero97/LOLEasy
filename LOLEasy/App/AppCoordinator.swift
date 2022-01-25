@@ -22,17 +22,8 @@ enum TabbarItem: CaseIterable {
         case .search:
             return (UIImage(systemName: "magnifyingglass"),UIImage(systemName: "magnifyingglass"))
         }
-
+        
     }
-    
-    //    var vc: UIViewController {
-    //        switch self {
-    //        case .search:
-    //            return SummonerSearchViewController()
-    //        case .ranking:
-    //            return UIViewController()
-    //        }
-    //    }
     
     var coordinator: Coordinator {
         switch self {
@@ -45,25 +36,28 @@ enum TabbarItem: CaseIterable {
 class AppCoordinator: Coordinator {
     var parentCoordinator: Coordinator? // nil
     var childCoordinators = [Coordinator]()
-    var tabbarController: UITabBarController
+    let tabbarController: UITabBarController
     let navigationController: UINavigationController
+    
     init(tabbarController: UITabBarController) {
         self.tabbarController = tabbarController
         self.navigationController = UINavigationController() // 메인을 탭바로 쓰기위해 사용 안한다
     }
     
     func start() {
-        
-        self.tabbarController.viewControllers = TabbarItem.allCases.map {
-                let vc = $0.coordinator.navigationController
-                vc.tabBarItem = UITabBarItem(
-                    title: $0.title,
-                    image: $0.icon.default,
-                    selectedImage: $0.icon.selected
-                )
-                $0.coordinator.start()
-                return vc
-            }
+        let viewControllers: [UIViewController] = TabbarItem.allCases.map {
+            let coordinator = $0.coordinator
+            let vc = coordinator.navigationController
+            self.childCoordinators.append(coordinator)
+            coordinator.start()
+            vc.tabBarItem = UITabBarItem(
+                title: $0.title,
+                image: $0.icon.default,
+                selectedImage: $0.icon.selected
+            )
+            return vc
+        }
+        self.tabbarController.viewControllers = viewControllers
         self.tabbarController.view.backgroundColor = .systemBackground
     }
 }
