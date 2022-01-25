@@ -13,6 +13,12 @@
 		AE143BB8279FC7D8002BBD24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE143BB6279FC7D8002BBD24 /* LaunchScreen.storyboard */; };
 		AE143BC1279FCB10002BBD24 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AE143BC0279FCB10002BBD24 /* SnapKit */; };
 		AE143BC4279FCB1C002BBD24 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = AE143BC3279FCB1C002BBD24 /* Alamofire */; };
+		AE143BC8279FCB86002BBD24 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BC7279FCB86002BBD24 /* AppCoordinator.swift */; };
+		AE143BCB279FCBA4002BBD24 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BCA279FCBA4002BBD24 /* Coordinator.swift */; };
+		AE143BD1279FCE52002BBD24 /* SummonerSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BD0279FCE52002BBD24 /* SummonerSearchViewController.swift */; };
+		AE143BD3279FCE5A002BBD24 /* SummonerSearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BD2279FCE5A002BBD24 /* SummonerSearchCoordinator.swift */; };
+		AE143BD5279FCE67002BBD24 /* SummonerSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BD4279FCE67002BBD24 /* SummonerSearchViewModel.swift */; };
+		AE143BD7279FD264002BBD24 /* riot.txt in Resources */ = {isa = PBXBuildFile; fileRef = AE143BD6279FD264002BBD24 /* riot.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,12 @@
 		AE143BB4279FC7D8002BBD24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE143BB7279FC7D8002BBD24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE143BB9279FC7D8002BBD24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE143BC7279FCB86002BBD24 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		AE143BCA279FCBA4002BBD24 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		AE143BD0279FCE52002BBD24 /* SummonerSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerSearchViewController.swift; sourceTree = "<group>"; };
+		AE143BD2279FCE5A002BBD24 /* SummonerSearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerSearchCoordinator.swift; sourceTree = "<group>"; };
+		AE143BD4279FCE67002BBD24 /* SummonerSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerSearchViewModel.swift; sourceTree = "<group>"; };
+		AE143BD6279FD264002BBD24 /* riot.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = riot.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +68,67 @@
 		AE143BAA279FC7D7002BBD24 /* LOLEasy */ = {
 			isa = PBXGroup;
 			children = (
+				AE143BCE279FCC80002BBD24 /* Data */,
+				AE143BCD279FCC7D002BBD24 /* Domain */,
+				AE143BCC279FCC74002BBD24 /* Presentation */,
+				AE143BC9279FCB8F002BBD24 /* Common */,
+				AE143BC6279FCB78002BBD24 /* App */,
 				AE143BAB279FC7D7002BBD24 /* AppDelegate.swift */,
 				AE143BAD279FC7D7002BBD24 /* SceneDelegate.swift */,
 				AE143BB4279FC7D8002BBD24 /* Assets.xcassets */,
 				AE143BB6279FC7D8002BBD24 /* LaunchScreen.storyboard */,
 				AE143BB9279FC7D8002BBD24 /* Info.plist */,
+				AE143BD6279FD264002BBD24 /* riot.txt */,
 			);
 			path = LOLEasy;
+			sourceTree = "<group>";
+		};
+		AE143BC6279FCB78002BBD24 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AE143BC7279FCB86002BBD24 /* AppCoordinator.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		AE143BC9279FCB8F002BBD24 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				AE143BCA279FCBA4002BBD24 /* Coordinator.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		AE143BCC279FCC74002BBD24 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				AE143BCF279FCE1A002BBD24 /* Search */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		AE143BCD279FCC7D002BBD24 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		AE143BCE279FCC80002BBD24 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		AE143BCF279FCE1A002BBD24 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				AE143BD0279FCE52002BBD24 /* SummonerSearchViewController.swift */,
+				AE143BD2279FCE5A002BBD24 /* SummonerSearchCoordinator.swift */,
+				AE143BD4279FCE67002BBD24 /* SummonerSearchViewModel.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE143BB8279FC7D8002BBD24 /* LaunchScreen.storyboard in Resources */,
+				AE143BD7279FD264002BBD24 /* riot.txt in Resources */,
 				AE143BB5279FC7D8002BBD24 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,7 +210,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE143BCB279FCBA4002BBD24 /* Coordinator.swift in Sources */,
+				AE143BD5279FCE67002BBD24 /* SummonerSearchViewModel.swift in Sources */,
+				AE143BD1279FCE52002BBD24 /* SummonerSearchViewController.swift in Sources */,
+				AE143BC8279FCB86002BBD24 /* AppCoordinator.swift in Sources */,
 				AE143BAC279FC7D7002BBD24 /* AppDelegate.swift in Sources */,
+				AE143BD3279FCE5A002BBD24 /* SummonerSearchCoordinator.swift in Sources */,
 				AE143BAE279FC7D7002BBD24 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
