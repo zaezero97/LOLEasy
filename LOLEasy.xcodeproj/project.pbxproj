@@ -124,11 +124,35 @@
 		AE143BCF279FCE1A002BBD24 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				AE143BD0279FCE52002BBD24 /* SummonerSearchViewController.swift */,
-				AE143BD2279FCE5A002BBD24 /* SummonerSearchCoordinator.swift */,
-				AE143BD4279FCE67002BBD24 /* SummonerSearchViewModel.swift */,
+				AE143BDA279FD880002BBD24 /* Coordinator */,
+				AE143BD9279FD87C002BBD24 /* ViewModel */,
+				AE143BD8279FD877002BBD24 /* View */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		AE143BD8279FD877002BBD24 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AE143BD0279FCE52002BBD24 /* SummonerSearchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AE143BD9279FD87C002BBD24 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AE143BD4279FCE67002BBD24 /* SummonerSearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AE143BDA279FD880002BBD24 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				AE143BD2279FCE5A002BBD24 /* SummonerSearchCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
