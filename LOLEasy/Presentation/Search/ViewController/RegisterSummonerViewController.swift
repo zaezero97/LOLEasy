@@ -65,7 +65,7 @@ final class RegisterSummonerViewController: BaseViewController {
         self.registerButton.snp.makeConstraints { make in
             make.top.equalTo(self.nameTextField.snp.bottom).offset(32.0)
             make.centerX.equalToSuperview()
-            make.width.equalTo(200)
+            make.leading.trailing.equalToSuperview().inset(16.0)
             make.height.equalTo(80)
         }
         
