@@ -20,6 +20,6 @@ extension UIColor {
     }
     
     static var mainColor: UIColor {
-        UIColor(hex: "#007793")
+        UIColor(hex: "#16a085")
     }
 }
