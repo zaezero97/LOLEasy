@@ -5,7 +5,11 @@
 //  Created by 재영신 on 2022/01/25.
 //
 
+import RxCocoa
+import SnapKit
+import RxSwift
 import UIKit
+import RxGesture
 
 final class SummonerSearchViewController: BaseViewController {
     private lazy var topColorView: UIView = {
@@ -48,6 +52,7 @@ final class SummonerSearchViewController: BaseViewController {
         ].forEach {
             view.addSubview($0)
         }
+        
         return view
     }()
     
@@ -68,7 +73,7 @@ final class SummonerSearchViewController: BaseViewController {
         return imageView
     }()
     
-    private var viewModel: SummonerSearchViewModel!
+    var viewModel: SummonerSearchViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,6 +129,17 @@ final class SummonerSearchViewController: BaseViewController {
             make.center.equalToSuperview()
         }
     }
+    
+    override func binding() {
+        
+        let input = SummonerSearchViewModel.Input(
+            viewDidLoad: Observable.empty(),
+            didTapRegisterSummonerView: self.registerSummonerView.rx.tapGesture()
+                .when(.recognized)
+                .mapToVoid()
+        )
+        _ = self.viewModel.transform(from: input, disposeBag: self.disposeBag)
+    }
 }
 
 
@@ -137,7 +153,13 @@ private extension SummonerSearchViewController {
         borderLayer.path = UIBezierPath(roundedRect: borderLayer.frame,  cornerRadius: radius).cgPath
         view.layer.addSublayer(borderLayer)
     }
+    
+    @objc func didTapRegistureSummonerView() {
+        
+    }
 }
+
+
 
 import SwiftUI
 struct SummonerSearchViewController_Priviews: PreviewProvider {
@@ -156,4 +178,5 @@ struct SummonerSearchViewController_Priviews: PreviewProvider {
         typealias UIViewControllerType =  UIViewController
     }
 }
+
 

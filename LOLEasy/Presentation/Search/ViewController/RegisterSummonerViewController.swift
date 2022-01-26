@@ -25,6 +25,18 @@ final class RegisterSummonerViewController: BaseViewController {
         textField.layer.borderColor = UIColor.secondaryLabel.cgColor
         textField.layer.cornerRadius = 32.0
         textField.placeholder = "소환사 이름"
+        
+        let paddingView = UIView(
+            frame:
+                CGRect(
+                    x: 0,
+                    y: 0,
+                    width: 15,
+                    height: textField.frame.height
+                )
+        )
+        textField.leftView = paddingView
+        textField.leftViewMode = .always
         return textField
     }()
     
@@ -37,8 +49,10 @@ final class RegisterSummonerViewController: BaseViewController {
         return button
     }()
     
+    var viewModel: RegisterSummonerViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .systemBackground
     }
     
     override func configureUI() {
@@ -68,6 +82,25 @@ final class RegisterSummonerViewController: BaseViewController {
             make.leading.trailing.equalToSuperview().inset(16.0)
             make.height.equalTo(80)
         }
+        
+    }
+    
+    override func binding() {
+        
+        let input = RegisterSummonerViewModel.Input(
+            didTapRegisterButton: self.registerButton.rx.tap.asObservable(),
+            summonerName: self.nameTextField.rx.text.asObservable()
+        )
+        
+        let output = self.viewModel.transform(
+            from: input,
+            disposeBag: self.disposeBag
+        )
+        
+        output.errorMessage.emit(onNext: { [weak self] errorMessage in
+            self?.showAlert(title: "실패", message: errorMessage)
+        }).disposed(by: self.disposeBag)
+        
         
     }
 }

@@ -23,11 +23,13 @@ final class DefaultSummonerSearchCoordinator: SummonerSearchCoordinator {
     func start() {
         //TODO: 의존성 주입
         let vc = SummonerSearchViewController()
+        vc.viewModel = SummonerSearchViewModel(coordinator: self)
         self.navigationController.pushViewController(vc, animated: true)
     }
     
     func showRegisterSummonerScene() {
         let vc = RegisterSummonerViewController()
+        vc.viewModel = RegisterSummonerViewModel(summonerInfoUseCase: DefaultSummonerInfoUseCase(summonerRepository: DefaultSummonerRepository(riotAPIDataSource: DefaultRiotAPIDataSource())))
         self.navigationController.pushViewController(vc, animated: true)
     }
 }

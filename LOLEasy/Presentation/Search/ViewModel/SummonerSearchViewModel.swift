@@ -9,14 +9,15 @@ import Foundation
 import RxSwift
 
 final class SummonerSearchViewModel: ViewModelType {
+ 
     private weak var coordinator: SummonerSearchCoordinator?
     init(coordinator: SummonerSearchCoordinator) {
         self.coordinator = coordinator
     }
     func transform(from input: Input, disposeBag: DisposeBag) -> Output {
         input.didTapRegisterSummonerView
-            .subscribe(onNext: {
-                
+            .subscribe(onNext: { [weak self] _ in
+                self?.coordinator?.showRegisterSummonerScene()
             }).disposed(by: disposeBag)
         
         return Output()

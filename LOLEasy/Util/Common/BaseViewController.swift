@@ -7,8 +7,6 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
-import SnapKit
 
 class BaseViewController: UIViewController {
     
@@ -17,9 +15,21 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
+        self.binding()
     }
     
     func configureUI() {
         
     }
+    
+    func binding() {
+        
+    }
+    func showAlert(title:String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
+
+
