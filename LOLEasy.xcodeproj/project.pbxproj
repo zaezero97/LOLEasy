@@ -24,6 +24,7 @@
 		AE143BE2279FD9C9002BBD24 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AE143BE1279FD9C9002BBD24 /* RxSwift */; };
 		AE143BE5279FE277002BBD24 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BE4279FE277002BBD24 /* BaseViewController.swift */; };
 		AE143BE9279FE554002BBD24 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BE8279FE554002BBD24 /* UIColor+.swift */; };
+		AE53A41B27A0DC95004DFB9B /* RegisterSummonerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53A41A27A0DC95004DFB9B /* RegisterSummonerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		AE143BDC279FD985002BBD24 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		AE143BE4279FE277002BBD24 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AE143BE8279FE554002BBD24 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		AE53A41A27A0DC95004DFB9B /* RegisterSummonerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSummonerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				AE143BD0279FCE52002BBD24 /* SummonerSearchViewController.swift */,
+				AE53A41A27A0DC95004DFB9B /* RegisterSummonerViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				AE143BD1279FCE52002BBD24 /* SummonerSearchViewController.swift in Sources */,
 				AE143BC8279FCB86002BBD24 /* AppCoordinator.swift in Sources */,
 				AE143BDD279FD985002BBD24 /* ViewModelType.swift in Sources */,
+				AE53A41B27A0DC95004DFB9B /* RegisterSummonerViewController.swift in Sources */,
 				AE143BE5279FE277002BBD24 /* BaseViewController.swift in Sources */,
 				AE143BAC279FC7D7002BBD24 /* AppDelegate.swift in Sources */,
 				AE143BD3279FCE5A002BBD24 /* SummonerSearchCoordinator.swift in Sources */,

@@ -6,10 +6,8 @@
 //
 
 import UIKit
-import RxSwift
-import SnapKit
 
-final class SummonerSearchViewController: UIViewController {
+final class SummonerSearchViewController: BaseViewController {
     private lazy var topColorView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.mainColor
@@ -70,16 +68,17 @@ final class SummonerSearchViewController: UIViewController {
         return imageView
     }()
     
+    private var viewModel: SummonerSearchViewModel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.setLineDot(view: self.registerSummonerView, radius: 16.0)
     }
     
-    func configureUI() {
+    override func configureUI() {
         
         [
             self.topColorView,

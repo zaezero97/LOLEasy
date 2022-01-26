@@ -8,8 +8,9 @@
 import UIKit
 
 protocol SummonerSearchCoordinator: Coordinator {
-    
+    func showRegisterSummonerScene()
 }
+
 final class DefaultSummonerSearchCoordinator: SummonerSearchCoordinator {
     var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
@@ -20,12 +21,14 @@ final class DefaultSummonerSearchCoordinator: SummonerSearchCoordinator {
     }
     
     func start() {
-        let vc = SummonerSearchViewController()
-     
-        self.navigationController.pushViewController(vc, animated: true)
-        print(navigationController.viewControllers)
         //TODO: 의존성 주입
+        let vc = SummonerSearchViewController()
+        self.navigationController.pushViewController(vc, animated: true)
     }
     
+    func showRegisterSummonerScene() {
+        let vc = RegisterSummonerViewController()
+        self.navigationController.pushViewController(vc, animated: true)
+    }
 }
 
