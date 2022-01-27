@@ -7,9 +7,10 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 final class SummonerSearchViewModel: ViewModelType {
-
+    
     private weak var coordinator: SummonerSearchCoordinator?
     //private let summonerInfoUseCase: SummonerInfoUseCase
     
@@ -19,15 +20,15 @@ final class SummonerSearchViewModel: ViewModelType {
     }
     
     func transform(from input: Input) -> Output {
-//        input.didTapRegisterSummonerView
-//            .do(onNext:self.coordinator?.showRegisterSummonerScene)
-//
-        _ = input.didTapRegisterSummonerView
+        //        input.didTapRegisterSummonerView
+        //            .do(onNext:self.coordinator?.showRegisterSummonerScene)
+        //
+        let showRegisterView = input.didTapRegisterSummonerView
             .do(onNext: { [weak self] _ in
                 self?.coordinator?.showRegisterSummonerScene()
             })
-        
-        return Output()
+                
+        return Output(showRegisterView: showRegisterView.asSignal(onErrorJustReturn: ()))
     }
     
     
@@ -46,6 +47,6 @@ extension SummonerSearchViewModel {
     }
     
     struct Output {
-        
+        let showRegisterView: Signal<Void>
     }
 }

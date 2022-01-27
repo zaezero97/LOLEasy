@@ -138,7 +138,13 @@ final class SummonerSearchViewController: BaseViewController {
                 .when(.recognized)
                 .mapToVoid()
         )
-        _ = self.viewModel.transform(from: input)
+        
+        let output = self.viewModel.transform(from: input)
+        
+        output.showRegisterView
+            .emit()
+            .disposed(by: self.disposeBag)
+            
     }
 }
 

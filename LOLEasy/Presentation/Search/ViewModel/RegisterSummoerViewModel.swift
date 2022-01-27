@@ -28,9 +28,11 @@ final class RegisterSummonerViewModel: ViewModelType {
             .compactMap{ $0 }
             .flatMap(self.summonerInfoUseCase.fetchSummoner)
         
+        
         let errorMessage = fetchSummoner.compactMap { result -> String? in
             switch result {
-            case .success(_):
+            case .success(let summoner):
+                print(summoner)
                 return nil
             case .failure(let error):
                 print("error",error)
