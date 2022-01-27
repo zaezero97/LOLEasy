@@ -138,7 +138,7 @@ final class SummonerSearchViewController: BaseViewController {
                 .when(.recognized)
                 .mapToVoid()
         )
-        _ = self.viewModel.transform(from: input, disposeBag: self.disposeBag)
+        _ = self.viewModel.transform(from: input)
     }
 }
 

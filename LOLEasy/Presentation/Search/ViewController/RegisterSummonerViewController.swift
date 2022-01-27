@@ -92,10 +92,7 @@ final class RegisterSummonerViewController: BaseViewController {
             summonerName: self.nameTextField.rx.text.asObservable()
         )
         
-        let output = self.viewModel.transform(
-            from: input,
-            disposeBag: self.disposeBag
-        )
+        let output = self.viewModel.transform(from: input)
         
         output.errorMessage.emit(onNext: { [weak self] errorMessage in
             self?.showAlert(title: "실패", message: errorMessage)

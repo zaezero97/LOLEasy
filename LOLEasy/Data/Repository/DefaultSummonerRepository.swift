@@ -14,8 +14,19 @@ final class DefaultSummonerRepository: SummonerRepository {
     init(riotAPIDataSource: RiotAPIDataSource) {
         self.riotAPIDataSource = riotAPIDataSource
     }
-    func fetchSummoner(id: String) -> Single<Summoner> {
-        self.riotAPIDataSource.fetchSummoner(id: id)
-            .map{ $0.toDomain() }
+    func fetchSummoner(id: String) -> Observable<Result<Summoner,URLError>> {
+        return  self.riotAPIDataSource.fetchSummoner(id: id).compactMap { result in
+            switch result {
+            case .success(let summonerResponseDTO):
+                return .success(summonerResponseDTO.toDomain())
+            case .failure(let error):
+                return .failure(error)
+            }
+        }
+    }
+    
+    func fetchLeagueEntry(id: String) -> Single<[LeagueEntry]> {
+        self.riotAPIDataSource.fetchLeagueEntry(id: id)
+            .map{ $0.map { $0.toDomain() } }
     }
 }

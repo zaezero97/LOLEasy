@@ -24,6 +24,7 @@
 		AE143BE9279FE554002BBD24 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BE8279FE554002BBD24 /* UIColor+.swift */; };
 		AE53A41B27A0DC95004DFB9B /* RegisterSummonerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53A41A27A0DC95004DFB9B /* RegisterSummonerViewController.swift */; };
 		AE53A41D27A0E616004DFB9B /* RegisterSummoerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53A41C27A0E616004DFB9B /* RegisterSummoerViewModel.swift */; };
+		AEC284AC27A277B000B31BD2 /* RiotAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC284AB27A277B000B31BD2 /* RiotAPI.swift */; };
 		AEC766F327A112E000EBF3E4 /* Observable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC766F227A112E000EBF3E4 /* Observable+.swift */; };
 		AEC766F827A113D800EBF3E4 /* SummonerInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC766F727A113D800EBF3E4 /* SummonerInfoUseCase.swift */; };
 		AEC766FA27A114BB00EBF3E4 /* Summoner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC766F927A114BB00EBF3E4 /* Summoner.swift */; };
@@ -34,6 +35,10 @@
 		AEC7670727A1170A00EBF3E4 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7670627A1170A00EBF3E4 /* URL+.swift */; };
 		AEC7670A27A118AD00EBF3E4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7670927A118AD00EBF3E4 /* Config.swift */; };
 		AEC7670C27A11BF900EBF3E4 /* SummonerRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7670B27A11BF900EBF3E4 /* SummonerRequestDTO.swift */; };
+		AEC7670E27A1376A00EBF3E4 /* LeagueEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7670D27A1376A00EBF3E4 /* LeagueEntry.swift */; };
+		AEC7671027A137F000EBF3E4 /* LeagueEntryRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7670F27A137F000EBF3E4 /* LeagueEntryRequestDTO.swift */; };
+		AEC7671227A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7671127A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift */; };
+		AEC7671427A144B200EBF3E4 /* RxRegisterSummonerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7671327A144B200EBF3E4 /* RxRegisterSummonerDelegateProxy.swift */; };
 		FA36C3659C9A4DBB096136D0 /* Pods_LOLEasy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26582C5B24F86DA99BC9B565 /* Pods_LOLEasy.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +62,7 @@
 		AE143BE8279FE554002BBD24 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		AE53A41A27A0DC95004DFB9B /* RegisterSummonerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSummonerViewController.swift; sourceTree = "<group>"; };
 		AE53A41C27A0E616004DFB9B /* RegisterSummoerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSummoerViewModel.swift; sourceTree = "<group>"; };
+		AEC284AB27A277B000B31BD2 /* RiotAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiotAPI.swift; sourceTree = "<group>"; };
 		AEC766F227A112E000EBF3E4 /* Observable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+.swift"; sourceTree = "<group>"; };
 		AEC766F727A113D800EBF3E4 /* SummonerInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerInfoUseCase.swift; sourceTree = "<group>"; };
 		AEC766F927A114BB00EBF3E4 /* Summoner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summoner.swift; sourceTree = "<group>"; };
@@ -67,6 +73,10 @@
 		AEC7670627A1170A00EBF3E4 /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
 		AEC7670927A118AD00EBF3E4 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		AEC7670B27A11BF900EBF3E4 /* SummonerRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerRequestDTO.swift; sourceTree = "<group>"; };
+		AEC7670D27A1376A00EBF3E4 /* LeagueEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntry.swift; sourceTree = "<group>"; };
+		AEC7670F27A137F000EBF3E4 /* LeagueEntryRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntryRequestDTO.swift; sourceTree = "<group>"; };
+		AEC7671127A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntryResponseDTO.swift; sourceTree = "<group>"; };
+		AEC7671327A144B200EBF3E4 /* RxRegisterSummonerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxRegisterSummonerDelegateProxy.swift; sourceTree = "<group>"; };
 		F254899EFC58DD0D938E5571 /* Pods-LOLEasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLEasy.release.xcconfig"; path = "Target Support Files/Pods-LOLEasy/Pods-LOLEasy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +153,7 @@
 				AE143BCA279FCBA4002BBD24 /* Coordinator.swift */,
 				AE143BDC279FD985002BBD24 /* ViewModelType.swift */,
 				AE143BE4279FE277002BBD24 /* BaseViewController.swift */,
+				AEC7671327A144B200EBF3E4 /* RxRegisterSummonerDelegateProxy.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -258,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				AEC766F927A114BB00EBF3E4 /* Summoner.swift */,
+				AEC7670D27A1376A00EBF3E4 /* LeagueEntry.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -274,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				AEC7670127A115D100EBF3E4 /* RiotAPIDataSource.swift */,
+				AEC284AB27A277B000B31BD2 /* RiotAPI.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -283,6 +296,8 @@
 			children = (
 				AEC7670427A1161300EBF3E4 /* SummonerResponseDTO.swift */,
 				AEC7670B27A11BF900EBF3E4 /* SummonerRequestDTO.swift */,
+				AEC7670F27A137F000EBF3E4 /* LeagueEntryRequestDTO.swift */,
+				AEC7671127A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -428,15 +443,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE143BCB279FCBA4002BBD24 /* Coordinator.swift in Sources */,
+				AEC7670E27A1376A00EBF3E4 /* LeagueEntry.swift in Sources */,
 				AEC7670527A1161300EBF3E4 /* SummonerResponseDTO.swift in Sources */,
 				AE143BD5279FCE67002BBD24 /* SummonerSearchViewModel.swift in Sources */,
 				AE143BD1279FCE52002BBD24 /* SummonerSearchViewController.swift in Sources */,
+				AEC7671227A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift in Sources */,
 				AEC766F327A112E000EBF3E4 /* Observable+.swift in Sources */,
 				AE143BC8279FCB86002BBD24 /* AppCoordinator.swift in Sources */,
 				AE143BDD279FD985002BBD24 /* ViewModelType.swift in Sources */,
 				AE53A41B27A0DC95004DFB9B /* RegisterSummonerViewController.swift in Sources */,
 				AEC7670227A115D100EBF3E4 /* RiotAPIDataSource.swift in Sources */,
 				AE53A41D27A0E616004DFB9B /* RegisterSummoerViewModel.swift in Sources */,
+				AEC7671027A137F000EBF3E4 /* LeagueEntryRequestDTO.swift in Sources */,
 				AE143BE5279FE277002BBD24 /* BaseViewController.swift in Sources */,
 				AEC766FF27A1159200EBF3E4 /* DefaultSummonerRepository.swift in Sources */,
 				AEC766FC27A1154200EBF3E4 /* SummonerRepository.swift in Sources */,
@@ -446,7 +464,9 @@
 				AEC7670727A1170A00EBF3E4 /* URL+.swift in Sources */,
 				AEC766FA27A114BB00EBF3E4 /* Summoner.swift in Sources */,
 				AEC7670A27A118AD00EBF3E4 /* Config.swift in Sources */,
+				AEC7671427A144B200EBF3E4 /* RxRegisterSummonerDelegateProxy.swift in Sources */,
 				AE143BD3279FCE5A002BBD24 /* SummonerSearchCoordinator.swift in Sources */,
+				AEC284AC27A277B000B31BD2 /* RiotAPI.swift in Sources */,
 				AE143BAE279FC7D7002BBD24 /* SceneDelegate.swift in Sources */,
 				AE143BE9279FE554002BBD24 /* UIColor+.swift in Sources */,
 			);

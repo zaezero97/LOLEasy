@@ -9,21 +9,34 @@ import Foundation
 import RxSwift
 
 final class SummonerSearchViewModel: ViewModelType {
- 
+
     private weak var coordinator: SummonerSearchCoordinator?
+    //private let summonerInfoUseCase: SummonerInfoUseCase
+    
     init(coordinator: SummonerSearchCoordinator) {
         self.coordinator = coordinator
+        
     }
-    func transform(from input: Input, disposeBag: DisposeBag) -> Output {
-        input.didTapRegisterSummonerView
-            .subscribe(onNext: { [weak self] _ in
+    
+    func transform(from input: Input) -> Output {
+//        input.didTapRegisterSummonerView
+//            .do(onNext:self.coordinator?.showRegisterSummonerScene)
+//
+        _ = input.didTapRegisterSummonerView
+            .do(onNext: { [weak self] _ in
                 self?.coordinator?.showRegisterSummonerScene()
-            }).disposed(by: disposeBag)
+            })
         
         return Output()
     }
     
     
+}
+
+extension SummonerSearchViewModel:RegisterSummonerProtocol {
+    func registerSummoner(summoner: Summoner) {
+        
+    }
 }
 
 extension SummonerSearchViewModel {

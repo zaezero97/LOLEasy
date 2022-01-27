@@ -9,13 +9,19 @@ import UIKit
 
 protocol SummonerSearchCoordinator: Coordinator {
     func showRegisterSummonerScene()
+    func popRegisterSummonerVC()
 }
+
+protocol RegisterSummonerProtocol: AnyObject {
+    func registerSummoner(summoner: Summoner)
+} 
 
 final class DefaultSummonerSearchCoordinator: SummonerSearchCoordinator {
     var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
+    weak var delegate: RegisterSummonerProtocol?
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -23,14 +29,25 @@ final class DefaultSummonerSearchCoordinator: SummonerSearchCoordinator {
     func start() {
         //TODO: 의존성 주입
         let vc = SummonerSearchViewController()
-        vc.viewModel = SummonerSearchViewModel(coordinator: self)
+        let viewModel = SummonerSearchViewModel(coordinator: self)
+        vc.viewModel = viewModel
+        self.delegate = viewModel
         self.navigationController.pushViewController(vc, animated: true)
     }
     
     func showRegisterSummonerScene() {
         let vc = RegisterSummonerViewController()
-        vc.viewModel = RegisterSummonerViewModel(summonerInfoUseCase: DefaultSummonerInfoUseCase(summonerRepository: DefaultSummonerRepository(riotAPIDataSource: DefaultRiotAPIDataSource())))
+        let summonerRepository = DefaultSummonerRepository(riotAPIDataSource: DefaultRiotAPIDataSource())
+        vc.viewModel = RegisterSummonerViewModel(
+            summonerInfoUseCase: DefaultSummonerInfoUseCase(summonerRepository: summonerRepository), coordinator: self)
+        
         self.navigationController.pushViewController(vc, animated: true)
     }
+    
+    func popRegisterSummonerVC() {
+        
+        self.navigationController.popViewController(animated: true)
+    }
+    
 }
 
