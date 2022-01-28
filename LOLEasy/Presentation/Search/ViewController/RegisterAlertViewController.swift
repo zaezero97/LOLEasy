@@ -31,6 +31,12 @@ final class RegisterAlertViewController: BaseViewController {
     private lazy var alertView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.brown
+        view.layer.cornerRadius = 16.0
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowRadius = 16.0 // 반경
+        view.layer.shadowOpacity = 0.3 // alpha값
+        view.layer.shadowRadius = 3.0
+        view.layer.shadowOffset = CGSize(width: 8.0, height: 8.0)
         return view
     }()
     
@@ -43,6 +49,7 @@ final class RegisterAlertViewController: BaseViewController {
     
     private lazy var tierImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = self.leagueEntry.tier?.icon
         return imageView
     }()
     
@@ -56,7 +63,8 @@ final class RegisterAlertViewController: BaseViewController {
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = self.summoner.name
-        label.font = .systemFont(ofSize: 16.0, weight: .bold)
+        label.font = .systemFont(ofSize: 32.0, weight: .bold)
+        label.textAlignment = .center
         return label
     }()
     
@@ -71,21 +79,25 @@ final class RegisterAlertViewController: BaseViewController {
     private lazy var registerButton: UIButton = {
         let button = UIButton()
         button.setTitle("등록", for: .normal)
-        button.tintColor = UIColor.mainColor
+        button.backgroundColor = UIColor.mainColor
+        button.layer.cornerRadius = 16.0
         return button
     }()
     
     private lazy var cancleButton: UIButton = {
         let button = UIButton()
         button.setTitle("취소", for: .normal)
-        button.tintColor = UIColor.mainColor
+        button.backgroundColor = UIColor.mainColor
+        button.layer.cornerRadius = 16.0
         return button
     }()
     
     private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.distribution = .fillEqually
-        stackView.alignment = .center
+        stackView.spacing = 8.0
+        stackView.alignment = .fill
+        
         return stackView
     }()
     let didTapRegisterButton = PublishSubject<Void>()
@@ -128,7 +140,7 @@ final class RegisterAlertViewController: BaseViewController {
             registerButton,
             cancleButton
         ].forEach {
-            self.buttonStackView.addSubview($0)
+            self.buttonStackView.addArrangedSubview($0)
         }
         
         self.alertView.snp.makeConstraints { make in
@@ -150,7 +162,7 @@ final class RegisterAlertViewController: BaseViewController {
         
         self.nameLabel.snp.makeConstraints { make in
             make.leading.equalTo(self.iconImageView.snp.trailing).offset(16.0)
-            make.top.trailing.equalToSuperview().inset(16.0)
+            make.centerY.equalTo(self.iconImageView)
         }
         
         self.tierImageView.snp.makeConstraints { make in
@@ -160,13 +172,13 @@ final class RegisterAlertViewController: BaseViewController {
         }
         
         self.tierLabel.snp.makeConstraints { make in
-            make.leading.equalTo(tierImageView).offset(16.0)
+            make.leading.equalTo(tierImageView.snp.trailing).offset(16.0)
             make.trailing.equalToSuperview().offset(16.0)
-            make.top.equalTo(self.iconImageView.snp.bottom).offset(16.0)
+            make.centerY.equalTo(tierImageView)
         }
         
         self.buttonStackView.snp.makeConstraints { make in
-            make.bottom.leading.trailing.equalToSuperview()
+            make.bottom.leading.trailing.equalToSuperview().inset(8.0)
             make.height.equalTo(80)
         }
     }
@@ -189,29 +201,28 @@ final class RegisterAlertViewController: BaseViewController {
     }
 }
 
-extension Reactive where Base: RegisterAlertViewController {
-    var tapRegisterButton: Observable<Void> {
-        return self.base.didTapRegisterButton.asObservable()
+
+
+
+import SwiftUI
+struct CustomAlertViewController_Priviews: PreviewProvider {
+    static var previews: some View {
+        Contatiner().edgesIgnoringSafeArea(.all)
+    }
+    struct Contatiner: UIViewControllerRepresentable {
+        func makeUIViewController(context: Context) -> UIViewController {
+            let vc = RegisterAlertViewController(
+                summoner: Summoner(accountId: "", profileIconId: 123213123213, name: "제제로", id: "", puuid: "", summonerLevel: 100),
+                leagueEntry: LeagueEntry(queueType: .RANKED_SOLO_5x5, tier: .challenger, rank: "100", leaguePoints: 56, wins: 42, losses: 23)
+            ) //보고 싶은 뷰컨 객체
+            return vc
+        }
+
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+
+        }
+        typealias UIViewControllerType =  UIViewController
     }
 }
-
-
-//import SwiftUI
-//struct CustomAlertViewController_Priviews: PreviewProvider {
-//    static var previews: some View {
-//        Contatiner().edgesIgnoringSafeArea(.all)
-//    }
-//    struct Contatiner: UIViewControllerRepresentable {
-//        func makeUIViewController(context: Context) -> UIViewController {
-//            let vc = RegisterAlertViewController() //보고 싶은 뷰컨 객체
-//            return vc
-//        }
-//
-//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-//
-//        }
-//        typealias UIViewControllerType =  UIViewController
-//    }
-//}
 
 

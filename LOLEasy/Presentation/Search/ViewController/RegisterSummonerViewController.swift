@@ -130,6 +130,7 @@ private extension RegisterSummonerViewController {
     
     func showRegisterAlert(summonerInfo: (Summoner,LeagueEntry)){
         let alert = RegisterAlertViewController(summoner: summonerInfo.0, leagueEntry: summonerInfo.1)
+        alert.modalPresentationStyle = .overFullScreen
         self.present(alert, animated: true, completion: nil)
     }
 }
