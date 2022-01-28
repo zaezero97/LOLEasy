@@ -15,7 +15,7 @@ enum QueueType: String, Decodable {
 
 struct LeagueEntry {
     let queueType: QueueType
-    let tier: String?
+    let tier: Tier?
     let rank: String?
     let leaguePoints: Int
     let wins: Int

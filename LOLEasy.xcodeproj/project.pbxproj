@@ -39,6 +39,7 @@
 		AEC7671027A137F000EBF3E4 /* LeagueEntryRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7670F27A137F000EBF3E4 /* LeagueEntryRequestDTO.swift */; };
 		AEC7671227A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7671127A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift */; };
 		AEC7671427A144B200EBF3E4 /* RxRegisterSummonerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7671327A144B200EBF3E4 /* RxRegisterSummonerDelegateProxy.swift */; };
+		AEEFBB5827A3A40D00E17FB9 /* RegisterAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEFBB5727A3A40C00E17FB9 /* RegisterAlertViewController.swift */; };
 		FA36C3659C9A4DBB096136D0 /* Pods_LOLEasy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26582C5B24F86DA99BC9B565 /* Pods_LOLEasy.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		AEC7670F27A137F000EBF3E4 /* LeagueEntryRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntryRequestDTO.swift; sourceTree = "<group>"; };
 		AEC7671127A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntryResponseDTO.swift; sourceTree = "<group>"; };
 		AEC7671327A144B200EBF3E4 /* RxRegisterSummonerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxRegisterSummonerDelegateProxy.swift; sourceTree = "<group>"; };
+		AEEFBB5727A3A40C00E17FB9 /* RegisterAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAlertViewController.swift; sourceTree = "<group>"; };
 		F254899EFC58DD0D938E5571 /* Pods-LOLEasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLEasy.release.xcconfig"; path = "Target Support Files/Pods-LOLEasy/Pods-LOLEasy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -226,6 +228,7 @@
 			children = (
 				AE143BD0279FCE52002BBD24 /* SummonerSearchViewController.swift */,
 				AE53A41A27A0DC95004DFB9B /* RegisterSummonerViewController.swift */,
+				AEEFBB5727A3A40C00E17FB9 /* RegisterAlertViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				AE53A41B27A0DC95004DFB9B /* RegisterSummonerViewController.swift in Sources */,
 				AEC7670227A115D100EBF3E4 /* RiotAPIDataSource.swift in Sources */,
 				AE53A41D27A0E616004DFB9B /* RegisterSummoerViewModel.swift in Sources */,
+				AEEFBB5827A3A40D00E17FB9 /* RegisterAlertViewController.swift in Sources */,
 				AEC7671027A137F000EBF3E4 /* LeagueEntryRequestDTO.swift in Sources */,
 				AE143BE5279FE277002BBD24 /* BaseViewController.swift in Sources */,
 				AEC766FF27A1159200EBF3E4 /* DefaultSummonerRepository.swift in Sources */,

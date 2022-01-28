@@ -11,6 +11,18 @@ import RxCocoa
 
 final class RegisterSummonerViewModel: ViewModelType {
     
+    struct Input {
+        // String -> 소환사 이름
+        let didTapSearchButton: Observable<Void>
+        let didTapRegisterButton: Observable<Void>
+        let summonerName: Observable<String?>
+    }
+    struct Output {
+        // String -> 존재하지 않은 사용자 를 입력했다는 메시지
+        let errorMessage: Signal<String>
+        let summonerInfo: Driver<(Summoner,LeagueEntry)>
+    }
+    
     private let summonerInfoUseCase: SummonerInfoUseCase
     private weak var coordinator: SummonerSearchCoordinator?
     
@@ -26,7 +38,7 @@ final class RegisterSummonerViewModel: ViewModelType {
     func transform(from input: Input) -> Output {
         //TODO: 소환사 정보가져오는 로직 구현
         
-        let fetchSummonerResult = input.didTapRegisterButton
+        let fetchSummonerResult = input.didTapSearchButton
             .withLatestFrom(input.summonerName)
             .compactMap{ $0 }
             .flatMap(self.summonerInfoUseCase.fetchSummoner)
@@ -57,28 +69,14 @@ final class RegisterSummonerViewModel: ViewModelType {
         }
         
         
-        
+      
         return Output(
             errorMessage: errorMessage.asSignal(onErrorJustReturn: "error"),
-            summoner: fetchSummoner.asDriver(onErrorDriveWith: Driver.empty()),
-            leagueEntry: fetchLeagueEntry.asDriver(onErrorDriveWith: Driver.empty())
+            summonerInfo: Observable.zip(fetchSummoner,fetchLeagueEntry).asDriver(onErrorDriveWith: Driver.empty())
         )
     }
 }
 
 
-extension RegisterSummonerViewModel {
-    struct Input {
-        // String -> 소환사 이름
-        let didTapRegisterButton: Observable<Void>
-        let summonerName: Observable<String?>
-    }
-    struct Output {
-        // String -> 존재하지 않은 사용자 를 입력했다는 메시지
-        let errorMessage: Signal<String>
-        let summoner: Driver<Summoner>
-        let leagueEntry: Driver<LeagueEntry>
-    }
-}
 
 

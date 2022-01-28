@@ -49,7 +49,7 @@ final class RegisterSummonerViewController: BaseViewController {
         button.layer.cornerRadius = 16.0
         return button
     }()
-    
+                    
     var viewModel: RegisterSummonerViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,9 +87,14 @@ final class RegisterSummonerViewController: BaseViewController {
     }
     
     override func binding() {
-        
+        let tapRegisterButton = PublishSubject<Void>()
+            .do(onNext: {
+                print("tap")
+            })
+                
         let input = RegisterSummonerViewModel.Input(
-            didTapRegisterButton: self.registerButton.rx.tap.asObservable(),
+            didTapSearchButton: self.registerButton.rx.tap.asObservable(),
+            didTapRegisterButton: tapRegisterButton.asObservable(),
             summonerName: self.nameTextField.rx.text.asObservable()
         )
         
@@ -99,14 +104,18 @@ final class RegisterSummonerViewController: BaseViewController {
             self?.showAlert(title: "실패", message: errorMessage)
         }).disposed(by: self.disposeBag)
         
-        output.summoner.drive(self.summonerBinding)
-            .disposed(by: self.disposeBag)
-        
-        output.leagueEntry.drive(self.leagueEntryBinding)
-            .disposed(by: self.disposeBag)
+        output.summonerInfo.drive(
+            onNext: self.showRegisterAlert(summonerInfo:)
+        ).disposed(by: self.disposeBag)
         
     }
     
+   
+    
+}
+
+
+private extension RegisterSummonerViewController {
     var summonerBinding: Binder<Summoner> {
         return Binder(self) { (vc,summoner) in
             print("fetched Summoner!!!",summoner)
@@ -118,8 +127,12 @@ final class RegisterSummonerViewController: BaseViewController {
             print("fetched LeagueEntry!!!",leagueEntry)
         }
     }
+    
+    func showRegisterAlert(summonerInfo: (Summoner,LeagueEntry)){
+        let alert = RegisterAlertViewController(summoner: summonerInfo.0, leagueEntry: summonerInfo.1)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
-
 
 
 import SwiftUI

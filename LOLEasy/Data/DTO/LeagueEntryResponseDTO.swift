@@ -12,7 +12,7 @@ struct LeagueEntryResponseDTO: Decodable {
     let summonerId: String
     let summonerName: String
     let queueType: QueueType
-    let tier: String?
+    let tier: Tier?
     let rank: String?
     let leaguePoints: Int
     let wins: Int
