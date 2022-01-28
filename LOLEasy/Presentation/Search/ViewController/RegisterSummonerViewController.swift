@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 
 final class RegisterSummonerViewController: BaseViewController {
@@ -98,9 +99,28 @@ final class RegisterSummonerViewController: BaseViewController {
             self?.showAlert(title: "실패", message: errorMessage)
         }).disposed(by: self.disposeBag)
         
+        output.summoner.drive(self.summonerBinding)
+            .disposed(by: self.disposeBag)
+        
+        output.leagueEntry.drive(self.leagueEntryBinding)
+            .disposed(by: self.disposeBag)
         
     }
+    
+    var summonerBinding: Binder<Summoner> {
+        return Binder(self) { (vc,summoner) in
+            print("fetched Summoner!!!",summoner)
+        }
+    }
+    
+    var leagueEntryBinding: Binder<LeagueEntry> {
+        return Binder(self) { (vc,leagueEntry) in
+            print("fetched LeagueEntry!!!",leagueEntry)
+        }
+    }
 }
+
+
 
 import SwiftUI
 struct RegisterViewController_Priviews: PreviewProvider {

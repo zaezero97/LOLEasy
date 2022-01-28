@@ -10,11 +10,9 @@ import RxSwift
 
 protocol SummonerRepository {
     func fetchSummoner(id: String) -> Observable<Result<Summoner,URLError>>
-//    func registerSummoner(summoner: Summoner)
-//    func fetchSummonerIcon(iconId: Int) -> Single<Data>
-    func fetchLeagueEntry(id: String) -> Single<[LeagueEntry]>
-//    func fetchLocalSavedSummonerName() -> Single<String>
-//    func unregisterSummoner()
+    func fetchLeagueEntry(id: String) -> Observable<Result<
+        [LeagueEntry],URLError>>
+
 }
 
 

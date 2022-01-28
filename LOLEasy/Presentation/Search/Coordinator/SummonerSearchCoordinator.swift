@@ -12,16 +12,18 @@ protocol SummonerSearchCoordinator: Coordinator {
     func popRegisterSummonerVC()
 }
 
-protocol RegisterSummonerProtocol: AnyObject {
+protocol RegisterSummonerDelegate: AnyObject {
     func registerSummoner(summoner: Summoner)
 } 
+
+
 
 final class DefaultSummonerSearchCoordinator: SummonerSearchCoordinator {
     var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
-    weak var delegate: RegisterSummonerProtocol?
+    weak var delegate: RegisterSummonerDelegate?
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -31,7 +33,7 @@ final class DefaultSummonerSearchCoordinator: SummonerSearchCoordinator {
         let vc = SummonerSearchViewController()
         let viewModel = SummonerSearchViewModel(coordinator: self)
         vc.viewModel = viewModel
-        self.delegate = viewModel
+        //self.delegate = viewModel
         self.navigationController.pushViewController(vc, animated: true)
     }
     

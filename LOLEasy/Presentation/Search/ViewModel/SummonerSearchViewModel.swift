@@ -34,11 +34,11 @@ final class SummonerSearchViewModel: ViewModelType {
     
 }
 
-extension SummonerSearchViewModel:RegisterSummonerProtocol {
-    func registerSummoner(summoner: Summoner) {
-        
-    }
-}
+//extension SummonerSearchViewModel:RegisterSummonerProtocol {
+//    func registerSummoner(summoner: Summoner) {
+//
+//    }
+//}
 
 extension SummonerSearchViewModel {
     struct Input {

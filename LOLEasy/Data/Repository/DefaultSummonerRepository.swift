@@ -25,8 +25,20 @@ final class DefaultSummonerRepository: SummonerRepository {
         }
     }
     
-    func fetchLeagueEntry(id: String) -> Single<[LeagueEntry]> {
+    func fetchLeagueEntry(id: String) -> Observable<Result<
+        [LeagueEntry],URLError>> {
         self.riotAPIDataSource.fetchLeagueEntry(id: id)
-            .map{ $0.map { $0.toDomain() } }
+            .map{
+                result in
+                switch result {
+                case .success(let leagueEntryResponseDTOs):
+                    return .success(leagueEntryResponseDTOs.map({
+                        $0.toDomain()
+                    }))
+                case .failure(let error):
+                    return .failure(error)
+                }
+            
+            }
     }
 }

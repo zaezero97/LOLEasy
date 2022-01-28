@@ -14,7 +14,8 @@ import Alamofire
 protocol RiotAPIDataSource {
     func fetchSummoner(id: String) -> Observable<Result<
         SummonerResponseDTO,URLError>>
-    func fetchLeagueEntry(id: String) -> Single<[LeagueEntryResponseDTO]>
+    func fetchLeagueEntry(id: String) -> Observable<Result<
+        [LeagueEntryResponseDTO],URLError>>
 //    func fetchSummonerIcon(iconId: Int) -> Single<Data>
 }
 
@@ -39,19 +40,16 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
             guard let url = self.riotAPI.getSummonerV4URL(id: id).url else {
                 return .just(.failure(URLError(.badURL)))
             }
-                        
-           
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
-            print(url)
             return self.session.rx.data(request: request)
                 .map {
                     data in
                     print(data)
                     do {
-                        let summonerResopnseDTO = try JSONDecoder().decode(SummonerResponseDTO.self, from: data)
+                        let summonerResponseDTO = try JSONDecoder().decode(SummonerResponseDTO.self, from: data)
                         
-                        return .success(summonerResopnseDTO)
+                        return .success(summonerResponseDTO)
                     } catch {
                         return .failure(URLError(.cannotParseResponse))
                     }
@@ -60,24 +58,23 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
             
     }
     
-    func fetchLeagueEntry(id: String) -> Single<[LeagueEntryResponseDTO]> {
-        return Single<[LeagueEntryResponseDTO]>.create {
-            [weak self] observer -> Disposable in
-            
-            let parameters = LeagueEntryRequestDTO(api_key: App.RiotToken)
-            let request = AF.request(URL.LEAGUE_V4(id: id), parameters: parameters, headers: self?.headers)
-                .responseDecodable(of: [LeagueEntryResponseDTO].self) { response in
-                    switch response.result {
-                    case .success(let leagueEntryResponseDTOs):
-                        observer(.success(leagueEntryResponseDTOs))
-                    case .failure(let error):
-                        observer(.failure(error))
-                    }
-                }
-            
-            return Disposables.create {
-                request.cancel()
+    func fetchLeagueEntry(id: String) -> Observable<Result<
+        [LeagueEntryResponseDTO],URLError>> {
+            guard let url = self.riotAPI.getLeagueV4URL(id: id).url else {
+                return .just(.failure(URLError(.badURL)))
             }
-        }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            
+            return self.session.rx.data(request: request)
+                .map { data in
+                    do {
+                        let leagueEntryResponseDTOs = try JSONDecoder().decode([LeagueEntryResponseDTO].self, from: data)
+                        return .success(leagueEntryResponseDTOs)
+                    } catch {
+                        return .failure(URLError(.cannotParseResponse))
+                    }
+                }.catch{ _ in .just(.failure(URLError(.cannotLoadFromNetwork)))}
     }
 }

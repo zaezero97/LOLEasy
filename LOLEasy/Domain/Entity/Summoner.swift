@@ -15,5 +15,7 @@ struct Summoner {
     let id: String
     let puuid: String
     let summonerLevel: Int
+    
+   
 }
 
