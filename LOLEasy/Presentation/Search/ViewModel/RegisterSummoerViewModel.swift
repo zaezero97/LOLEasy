@@ -26,7 +26,7 @@ final class RegisterSummonerViewModel: ViewModelType {
     private let summonerInfoUseCase: SummonerInfoUseCase
     private weak var coordinator: SummonerSearchCoordinator?
     
-    
+     
     init(
         summonerInfoUseCase: SummonerInfoUseCase,
         coordinator: SummonerSearchCoordinator

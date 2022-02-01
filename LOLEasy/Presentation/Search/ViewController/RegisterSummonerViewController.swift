@@ -41,10 +41,10 @@ final class RegisterSummonerViewController: BaseViewController {
         return textField
     }()
     
-    private lazy var registerButton: UIButton = {
+    private lazy var searchButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.mainColor
-        button.setTitle("등록하기", for: .normal)
+        button.setTitle("검색하기", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 16.0
         return button
@@ -61,7 +61,7 @@ final class RegisterSummonerViewController: BaseViewController {
         [
             titleLabel,
             nameTextField,
-            registerButton
+            searchButton
         ].forEach {
             self.view.addSubview($0)
         }
@@ -77,7 +77,7 @@ final class RegisterSummonerViewController: BaseViewController {
             make.height.equalTo(100)
         }
         
-        self.registerButton.snp.makeConstraints { make in
+        self.searchButton.snp.makeConstraints { make in
             make.top.equalTo(self.nameTextField.snp.bottom).offset(32.0)
             make.centerX.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(16.0)
@@ -87,13 +87,14 @@ final class RegisterSummonerViewController: BaseViewController {
     }
     
     override func binding() {
+        
         let tapRegisterButton = PublishSubject<Void>()
             .do(onNext: {
                 print("tap")
             })
                 
         let input = RegisterSummonerViewModel.Input(
-            didTapSearchButton: self.registerButton.rx.tap.asObservable(),
+            didTapSearchButton: self.searchButton.rx.tap.asObservable(),
             didTapRegisterButton: tapRegisterButton.asObservable(),
             summonerName: self.nameTextField.rx.text.asObservable()
         )
@@ -109,9 +110,6 @@ final class RegisterSummonerViewController: BaseViewController {
         ).disposed(by: self.disposeBag)
         
     }
-    
-   
-    
 }
 
 

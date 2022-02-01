@@ -30,13 +30,15 @@ final class RegisterAlertViewController: BaseViewController {
     
     private lazy var alertView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.brown
+        view.backgroundColor = .systemBackground
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.gray.cgColor
         view.layer.cornerRadius = 16.0
         view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowRadius = 16.0 // 반경
-        view.layer.shadowOpacity = 0.3 // alpha값
+        view.layer.shadowRadius = 16.0
         view.layer.shadowRadius = 3.0
-        view.layer.shadowOffset = CGSize(width: 8.0, height: 8.0)
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowOffset = .init(width: 6, height: 6)
         return view
     }()
     
@@ -97,10 +99,10 @@ final class RegisterAlertViewController: BaseViewController {
         stackView.distribution = .fillEqually
         stackView.spacing = 8.0
         stackView.alignment = .fill
-        
         return stackView
     }()
-    let didTapRegisterButton = PublishSubject<Void>()
+    
+   
     private let summoner: Summoner
     private let leagueEntry: LeagueEntry
     init(summoner:Summoner, leagueEntry: LeagueEntry) {
@@ -127,11 +129,11 @@ final class RegisterAlertViewController: BaseViewController {
         
         [
             iconImageView,
-            tierImageView,
-            tierLabel,
             nameLabel,
             levelLabel,
-            buttonStackView
+            buttonStackView,
+            tierImageView,
+            tierLabel
         ].forEach {
             self.alertView.addSubview($0)
         }
@@ -142,6 +144,7 @@ final class RegisterAlertViewController: BaseViewController {
         ].forEach {
             self.buttonStackView.addArrangedSubview($0)
         }
+        
         
         self.alertView.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -162,21 +165,21 @@ final class RegisterAlertViewController: BaseViewController {
         
         self.nameLabel.snp.makeConstraints { make in
             make.leading.equalTo(self.iconImageView.snp.trailing).offset(16.0)
-            make.centerY.equalTo(self.iconImageView)
+            make.top.equalTo(iconImageView).offset(16.0)
         }
         
         self.tierImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.iconImageView.snp.bottom).offset(16.0)
-            make.leading.equalToSuperview().inset(16.0)
-            make.width.height.equalTo(60)
+            make.top.equalTo(nameLabel.snp.bottom).offset(32.0)
+            make.leading.equalTo(iconImageView.snp.trailing).inset(-16.0)
+            make.width.height.equalTo(40.0)
         }
-        
+
         self.tierLabel.snp.makeConstraints { make in
-            make.leading.equalTo(tierImageView.snp.trailing).offset(16.0)
+            make.leading.equalTo(tierImageView.snp.trailing).offset(8.0)
             make.trailing.equalToSuperview().offset(16.0)
             make.centerY.equalTo(tierImageView)
         }
-        
+      
         self.buttonStackView.snp.makeConstraints { make in
             make.bottom.leading.trailing.equalToSuperview().inset(8.0)
             make.height.equalTo(80)
