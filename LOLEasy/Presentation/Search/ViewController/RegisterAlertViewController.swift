@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import RxSwift
+import Kingfisher
 
 enum Tier: String, Codable {
     case bronze = "BRONZE"
@@ -45,7 +46,12 @@ final class RegisterAlertViewController: BaseViewController {
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 16.0
-        imageView.image = UIImage(systemName: "person.fill")
+        //imageView.image = UIImage(systemName: "person.fill")
+        imageView.kf.setImage(
+            with:
+                URL(string: "https://ddragon.leagueoflegends.com/cdn/12.3.1/img/profileicon/\(self.summoner.profileIconId).png")!,
+                              placeholder: UIImage(systemName: "person.fill")
+        )
         return imageView
     }()
     
