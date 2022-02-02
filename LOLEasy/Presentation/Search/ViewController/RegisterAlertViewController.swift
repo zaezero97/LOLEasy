@@ -154,7 +154,7 @@ final class RegisterAlertViewController: BaseViewController {
         
         self.alertView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.height.equalTo(400.0)
+            make.height.equalTo(300.0)
             make.width.equalTo(300.0)
         }
         
