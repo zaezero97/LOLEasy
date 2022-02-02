@@ -89,10 +89,7 @@ final class RegisterSummonerViewController: BaseViewController {
     override func binding() {
         
         let tapRegisterButton = PublishSubject<Void>()
-            .do(onNext: {
-                print("tap")
-            })
-                
+         
         let input = RegisterSummonerViewModel.Input(
             didTapSearchButton: self.searchButton.rx.tap.asObservable(),
             didTapRegisterButton: tapRegisterButton.asObservable(),
@@ -106,7 +103,9 @@ final class RegisterSummonerViewController: BaseViewController {
         }).disposed(by: self.disposeBag)
         
         output.summonerInfo.drive(
-            onNext: self.showRegisterAlert(summonerInfo:)
+            onNext: { [weak self] summonerInfo in
+                self?.showRegisterAlert(summonerInfo: summonerInfo, observer: tapRegisterButton.asObserver())
+            }
         ).disposed(by: self.disposeBag)
         
     }
@@ -126,9 +125,10 @@ private extension RegisterSummonerViewController {
         }
     }
     
-    func showRegisterAlert(summonerInfo: (Summoner,LeagueEntry)){
+    func showRegisterAlert(summonerInfo: (Summoner,LeagueEntry), observer: AnyObserver<Void>){
         let alert = RegisterAlertViewController(summoner: summonerInfo.0, leagueEntry: summonerInfo.1)
         alert.modalPresentationStyle = .overFullScreen
+        alert.actionBinding(observer: observer)
         self.present(alert, animated: true, completion: nil)
     }
 }

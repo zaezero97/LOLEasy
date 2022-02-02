@@ -6,7 +6,8 @@ target 'LOLEasy' do
   use_frameworks!
 
   # Pods for LOLEasy
-	pod "RxGesture
+	pod 'RxGesture'
  	pod 'RxSwift', '6.5.0'
-    	pod 'RxCocoa', '6.5.0'"
+  	pod 'RxCocoa', '6.5.0'
+  	pod 'Kingfisher', '~> 7.0'
 end

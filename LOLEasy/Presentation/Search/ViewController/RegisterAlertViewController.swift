@@ -199,6 +199,9 @@ final class RegisterAlertViewController: BaseViewController {
     func actionBinding(observer: AnyObserver<Void>) {
         self.registerButton.rx.tap
             .mapToVoid()
+            .do(onNext :{
+                print("action!!")
+            })
             .subscribe(observer)
             .disposed(by: self.disposeBag)
     }

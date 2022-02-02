@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33EFF08CEE92BDEDBD05FB61 /* Pods_LOLEasy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A6B626030635D78BB59F7A /* Pods_LOLEasy.framework */; };
 		AE143BAC279FC7D7002BBD24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BAB279FC7D7002BBD24 /* AppDelegate.swift */; };
 		AE143BAE279FC7D7002BBD24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BAD279FC7D7002BBD24 /* SceneDelegate.swift */; };
 		AE143BB5279FC7D8002BBD24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE143BB4279FC7D8002BBD24 /* Assets.xcassets */; };
@@ -38,14 +39,10 @@
 		AEC7670E27A1376A00EBF3E4 /* LeagueEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7670D27A1376A00EBF3E4 /* LeagueEntry.swift */; };
 		AEC7671027A137F000EBF3E4 /* LeagueEntryRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7670F27A137F000EBF3E4 /* LeagueEntryRequestDTO.swift */; };
 		AEC7671227A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7671127A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift */; };
-		AEC7671427A144B200EBF3E4 /* RxRegisterSummonerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7671327A144B200EBF3E4 /* RxRegisterSummonerDelegateProxy.swift */; };
 		AEEFBB5827A3A40D00E17FB9 /* RegisterAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEFBB5727A3A40C00E17FB9 /* RegisterAlertViewController.swift */; };
-		FA36C3659C9A4DBB096136D0 /* Pods_LOLEasy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26582C5B24F86DA99BC9B565 /* Pods_LOLEasy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		26582C5B24F86DA99BC9B565 /* Pods_LOLEasy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LOLEasy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2F7EA24381244736DC49117B /* Pods-LOLEasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLEasy.debug.xcconfig"; path = "Target Support Files/Pods-LOLEasy/Pods-LOLEasy.debug.xcconfig"; sourceTree = "<group>"; };
 		AE143BA8279FC7D7002BBD24 /* LOLEasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LOLEasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE143BAB279FC7D7002BBD24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE143BAD279FC7D7002BBD24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,9 +74,10 @@
 		AEC7670D27A1376A00EBF3E4 /* LeagueEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntry.swift; sourceTree = "<group>"; };
 		AEC7670F27A137F000EBF3E4 /* LeagueEntryRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntryRequestDTO.swift; sourceTree = "<group>"; };
 		AEC7671127A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntryResponseDTO.swift; sourceTree = "<group>"; };
-		AEC7671327A144B200EBF3E4 /* RxRegisterSummonerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxRegisterSummonerDelegateProxy.swift; sourceTree = "<group>"; };
 		AEEFBB5727A3A40C00E17FB9 /* RegisterAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAlertViewController.swift; sourceTree = "<group>"; };
-		F254899EFC58DD0D938E5571 /* Pods-LOLEasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLEasy.release.xcconfig"; path = "Target Support Files/Pods-LOLEasy/Pods-LOLEasy.release.xcconfig"; sourceTree = "<group>"; };
+		C9EC3D578D96F8EB713F87B8 /* Pods-LOLEasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLEasy.debug.xcconfig"; path = "Target Support Files/Pods-LOLEasy/Pods-LOLEasy.debug.xcconfig"; sourceTree = "<group>"; };
+		DEFE31823E44469536052E42 /* Pods-LOLEasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLEasy.release.xcconfig"; path = "Target Support Files/Pods-LOLEasy/Pods-LOLEasy.release.xcconfig"; sourceTree = "<group>"; };
+		E1A6B626030635D78BB59F7A /* Pods_LOLEasy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LOLEasy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,28 +87,20 @@
 			files = (
 				AE143BC1279FCB10002BBD24 /* SnapKit in Frameworks */,
 				AE143BC4279FCB1C002BBD24 /* Alamofire in Frameworks */,
-				FA36C3659C9A4DBB096136D0 /* Pods_LOLEasy.framework in Frameworks */,
+				33EFF08CEE92BDEDBD05FB61 /* Pods_LOLEasy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		64658D56D8CD40106FE6219C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				26582C5B24F86DA99BC9B565 /* Pods_LOLEasy.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		AE143B9F279FC7D7002BBD24 = {
 			isa = PBXGroup;
 			children = (
 				AE143BAA279FC7D7002BBD24 /* LOLEasy */,
 				AE143BA9279FC7D7002BBD24 /* Products */,
 				B577955CC5D6BBE8F76D8E4F /* Pods */,
-				64658D56D8CD40106FE6219C /* Frameworks */,
+				E33FE33CD5321CF6CCE9B37F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,7 +145,6 @@
 				AE143BCA279FCBA4002BBD24 /* Coordinator.swift */,
 				AE143BDC279FD985002BBD24 /* ViewModelType.swift */,
 				AE143BE4279FE277002BBD24 /* BaseViewController.swift */,
-				AEC7671327A144B200EBF3E4 /* RxRegisterSummonerDelegateProxy.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -316,10 +305,18 @@
 		B577955CC5D6BBE8F76D8E4F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2F7EA24381244736DC49117B /* Pods-LOLEasy.debug.xcconfig */,
-				F254899EFC58DD0D938E5571 /* Pods-LOLEasy.release.xcconfig */,
+				C9EC3D578D96F8EB713F87B8 /* Pods-LOLEasy.debug.xcconfig */,
+				DEFE31823E44469536052E42 /* Pods-LOLEasy.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E33FE33CD5321CF6CCE9B37F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E1A6B626030635D78BB59F7A /* Pods_LOLEasy.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,11 +326,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE143BBC279FC7D8002BBD24 /* Build configuration list for PBXNativeTarget "LOLEasy" */;
 			buildPhases = (
-				BBF958BD54B11F12D5E5F2B5 /* [CP] Check Pods Manifest.lock */,
+				6B928B65614FE716DC350A8D /* [CP] Check Pods Manifest.lock */,
 				AE143BA4279FC7D7002BBD24 /* Sources */,
 				AE143BA5279FC7D7002BBD24 /* Frameworks */,
 				AE143BA6279FC7D7002BBD24 /* Resources */,
-				1C50D047569A6F8F05A7ABB1 /* [CP] Embed Pods Frameworks */,
+				270C0E220CFC9397081FF31C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -373,8 +370,8 @@
 			);
 			mainGroup = AE143B9F279FC7D7002BBD24;
 			packageReferences = (
-				AE143BBF279FCB10002BBD24 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				AE143BC2279FCB1C002BBD24 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				AE143BBF279FCB10002BBD24 /* XCRemoteSwiftPackageReference "SnapKit.git" */,
+				AE143BC2279FCB1C002BBD24 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
 			);
 			productRefGroup = AE143BA9279FC7D7002BBD24 /* Products */;
 			projectDirPath = "";
@@ -399,7 +396,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1C50D047569A6F8F05A7ABB1 /* [CP] Embed Pods Frameworks */ = {
+		270C0E220CFC9397081FF31C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -416,7 +413,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LOLEasy/Pods-LOLEasy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BBF958BD54B11F12D5E5F2B5 /* [CP] Check Pods Manifest.lock */ = {
+		6B928B65614FE716DC350A8D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -468,7 +465,6 @@
 				AEC7670727A1170A00EBF3E4 /* URL+.swift in Sources */,
 				AEC766FA27A114BB00EBF3E4 /* Summoner.swift in Sources */,
 				AEC7670A27A118AD00EBF3E4 /* Config.swift in Sources */,
-				AEC7671427A144B200EBF3E4 /* RxRegisterSummonerDelegateProxy.swift in Sources */,
 				AE143BD3279FCE5A002BBD24 /* SummonerSearchCoordinator.swift in Sources */,
 				AEC284AC27A277B000B31BD2 /* RiotAPI.swift in Sources */,
 				AE143BAE279FC7D7002BBD24 /* SceneDelegate.swift in Sources */,
@@ -608,7 +604,7 @@
 		};
 		AE143BBD279FC7D8002BBD24 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F7EA24381244736DC49117B /* Pods-LOLEasy.debug.xcconfig */;
+			baseConfigurationReference = C9EC3D578D96F8EB713F87B8 /* Pods-LOLEasy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -637,7 +633,7 @@
 		};
 		AE143BBE279FC7D8002BBD24 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F254899EFC58DD0D938E5571 /* Pods-LOLEasy.release.xcconfig */;
+			baseConfigurationReference = DEFE31823E44469536052E42 /* Pods-LOLEasy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -688,7 +684,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		AE143BBF279FCB10002BBD24 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		AE143BBF279FCB10002BBD24 /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -696,7 +692,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		AE143BC2279FCB1C002BBD24 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		AE143BC2279FCB1C002BBD24 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -709,12 +705,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		AE143BC0279FCB10002BBD24 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AE143BBF279FCB10002BBD24 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = AE143BBF279FCB10002BBD24 /* XCRemoteSwiftPackageReference "SnapKit.git" */;
 			productName = SnapKit;
 		};
 		AE143BC3279FCB1C002BBD24 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AE143BC2279FCB1C002BBD24 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = AE143BC2279FCB1C002BBD24 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
