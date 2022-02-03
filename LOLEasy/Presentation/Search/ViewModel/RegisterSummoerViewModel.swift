@@ -27,7 +27,7 @@ final class RegisterSummonerViewModel: ViewModelType {
     private let summonerInfoUseCase: SummonerInfoUseCase
     private weak var coordinator: SummonerSearchCoordinator?
     
-     
+    
     init(
         summonerInfoUseCase: SummonerInfoUseCase,
         coordinator: SummonerSearchCoordinator
@@ -37,7 +37,6 @@ final class RegisterSummonerViewModel: ViewModelType {
     }
     
     func transform(from input: Input) -> Output {
-        //TODO: 소환사 정보가져오는 로직 구현
         
         let fetchSummonerResult = input.didTapSearchButton
             .withLatestFrom(input.summonerName)
@@ -68,15 +67,19 @@ final class RegisterSummonerViewModel: ViewModelType {
             print("error",error)
             return "소환사 정보를 찾을 수 없습니다!"
         }
-            
+        
         let registration = input.didTapRegisterButton
             .withLatestFrom(input.summonerName)
-            .do(onNext: {
-                [weak self] name in
-                self?.summonerInfoUseCase.registerSummoner(name: name)
-                self?.coordinator?.popToRootVC()
-            }).mapToVoid()
-      
+            .do(
+                onNext: {
+                    [weak self] name in
+                    self?.summonerInfoUseCase.registerSummoner(name: name)
+                    self?.coordinator?.popToRootVC()
+                }
+            ).mapToVoid()
+        
+        
+        
         return Output(
             errorMessage: errorMessage.asSignal(onErrorJustReturn: "error"),
             summonerInfo: Observable.zip(fetchSummoner,fetchLeagueEntry).asDriver(onErrorDriveWith: Driver.empty()),

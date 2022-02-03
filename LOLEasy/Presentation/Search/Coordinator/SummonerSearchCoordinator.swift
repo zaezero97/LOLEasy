@@ -31,7 +31,8 @@ final class DefaultSummonerSearchCoordinator: SummonerSearchCoordinator {
     func start() {
         //TODO: 의존성 주입
         let vc = SummonerSearchViewController()
-        let viewModel = SummonerSearchViewModel(coordinator: self)
+        let summonerRepository = DefaultSummonerRepository(riotAPIDataSource: DefaultRiotAPIDataSource())
+        let viewModel = SummonerSearchViewModel(coordinator: self,summonerInfoUseCase: DefaultSummonerInfoUseCase(summonerRepository: summonerRepository))
         vc.viewModel = viewModel
         //self.delegate = viewModel
         self.navigationController.pushViewController(vc, animated: true)

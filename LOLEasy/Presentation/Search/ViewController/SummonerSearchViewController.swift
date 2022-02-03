@@ -73,6 +73,12 @@ final class SummonerSearchViewController: BaseViewController {
         return imageView
     }()
     
+    private lazy var summonerCardView: SummonerCardView = {
+        let cardView = SummonerCardView()
+        //cardView.isHidden = true
+        cardView.layer.cornerRadius = 16.0
+        return cardView
+    }()
     var viewModel: SummonerSearchViewModel!
 
     override func viewDidLoad() {
@@ -90,7 +96,8 @@ final class SummonerSearchViewController: BaseViewController {
             self.titleImageView,
             self.searchTextField,
             self.searchButton,
-            self.registerSummonerView
+            self.registerSummonerView,
+            self.summonerCardView
         ].forEach { self.view.addSubview($0) }
         
         self.topColorView.snp.makeConstraints { make in
@@ -128,6 +135,10 @@ final class SummonerSearchViewController: BaseViewController {
             make.width.height.equalTo(40.0)
             make.center.equalToSuperview()
         }
+        
+        self.summonerCardView.snp.makeConstraints { make in
+            make.edges.equalTo(self.registerSummonerView)
+        }
     }
     
     override func binding() {
@@ -136,7 +147,8 @@ final class SummonerSearchViewController: BaseViewController {
             viewDidLoad: Observable.empty(),
             didTapRegisterSummonerView: self.registerSummonerView.rx.tapGesture()
                 .when(.recognized)
-                .mapToVoid()
+                .mapToVoid(),
+            viewWillAppear: self.rx.sentMessage(#selector(self.viewWillAppear(_:))).mapToVoid()
         )
         
         let output = self.viewModel.transform(from: input)
@@ -144,7 +156,14 @@ final class SummonerSearchViewController: BaseViewController {
         output.showRegisterView
             .emit()
             .disposed(by: self.disposeBag)
-            
+        
+        output.summonerInfo
+            .do(onNext: {
+                [weak self] _ in
+                self?.registerSummonerView.isHidden = true
+            })
+            .drive(self.summonerCardView.rx.summonerInfo)
+            .disposed(by: self.disposeBag)
     }
 }
 
@@ -160,9 +179,7 @@ private extension SummonerSearchViewController {
         view.layer.addSublayer(borderLayer)
     }
     
-    @objc func didTapRegistureSummonerView() {
-        
-    }
+     
 }
 
 
