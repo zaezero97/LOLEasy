@@ -20,7 +20,7 @@ struct RiotAPI {
         components.path = self.summmonerV4 + id
         
         components.queryItems = [
-            URLQueryItem(name: "api_key", value: App.RiotToken)
+            URLQueryItem(name: "api_key", value: APP.RiotToken)
         ]
         
         print(components)
@@ -34,7 +34,7 @@ struct RiotAPI {
         components.path = self.LeagueV4 + id
         
         components.queryItems = [
-            URLQueryItem(name: "api_key", value: App.RiotToken)
+            URLQueryItem(name: "api_key", value: APP.RiotToken)
         ]
         
         print(components)

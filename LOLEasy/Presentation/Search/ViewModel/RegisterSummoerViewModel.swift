@@ -21,6 +21,7 @@ final class RegisterSummonerViewModel: ViewModelType {
         // String -> 존재하지 않은 사용자 를 입력했다는 메시지
         let errorMessage: Signal<String>
         let summonerInfo: Driver<(Summoner,LeagueEntry)>
+        let registration: Signal<Void>
     }
     
     private let summonerInfoUseCase: SummonerInfoUseCase
@@ -68,11 +69,18 @@ final class RegisterSummonerViewModel: ViewModelType {
             return "소환사 정보를 찾을 수 없습니다!"
         }
             
-        
+        let registration = input.didTapRegisterButton
+            .withLatestFrom(input.summonerName)
+            .do(onNext: {
+                [weak self] name in
+                self?.summonerInfoUseCase.registerSummoner(name: name)
+                self?.coordinator?.popToRootVC()
+            }).mapToVoid()
       
         return Output(
             errorMessage: errorMessage.asSignal(onErrorJustReturn: "error"),
-            summonerInfo: Observable.zip(fetchSummoner,fetchLeagueEntry).asDriver(onErrorDriveWith: Driver.empty())
+            summonerInfo: Observable.zip(fetchSummoner,fetchLeagueEntry).asDriver(onErrorDriveWith: Driver.empty()),
+            registration: registration.asSignal(onErrorJustReturn: ())
         )
     }
 }

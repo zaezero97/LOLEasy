@@ -13,6 +13,8 @@ protocol SummonerInfoUseCase: AnyObject {
     func fetchSummoner(id: String) -> Observable<Result<Summoner,URLError>>
     func fetchLeagueEntry(id: String) -> Observable<Result<
         LeagueEntry,URLError>>
+    func fetchRegisteredSummoner() -> String?
+    func registerSummoner(name: String?)
 }
 
 final class DefaultSummonerInfoUseCase: SummonerInfoUseCase {
@@ -42,4 +44,13 @@ final class DefaultSummonerInfoUseCase: SummonerInfoUseCase {
             }
         return a
     }
+    
+    func fetchRegisteredSummoner() -> String? {
+        return self.summonerRepository.fetchRegisteredSummoner()
+    }
+    
+    func registerSummoner(name: String?) {
+        self.summonerRepository.registerSummoner(name: name)
+    }
+    
 }

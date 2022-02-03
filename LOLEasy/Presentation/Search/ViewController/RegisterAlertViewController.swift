@@ -45,12 +45,12 @@ final class RegisterAlertViewController: BaseViewController {
     
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 16.0
-        //imageView.image = UIImage(systemName: "person.fill")
         imageView.kf.setImage(
             with:
                 URL(string: "https://ddragon.leagueoflegends.com/cdn/12.3.1/img/profileicon/\(self.summoner.profileIconId).png")!,
-                              placeholder: UIImage(systemName: "person.fill")
+                              placeholder: UIImage(systemName: "person.fill"),
+            options:[.processor(RoundCornerImageProcessor(cornerRadius: 16.0))]
+                
         )
         return imageView
     }()
@@ -68,7 +68,7 @@ final class RegisterAlertViewController: BaseViewController {
         return label
     }()
     
-    private lazy var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = { 
         let label = UILabel()
         label.text = self.summoner.name
         label.font = .systemFont(ofSize: 32.0, weight: .bold)
@@ -122,6 +122,12 @@ final class RegisterAlertViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Observable.merge(self.registerButton.rx.tap.asObservable(), self.cancleButton.rx.tap.asObservable())
+            .subscribe(onNext: {
+                [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
+            }).disposed(by: self.disposeBag)
     }
     
     override func configureUI() {

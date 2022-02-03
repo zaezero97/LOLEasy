@@ -12,7 +12,8 @@ protocol SummonerRepository {
     func fetchSummoner(id: String) -> Observable<Result<Summoner,URLError>>
     func fetchLeagueEntry(id: String) -> Observable<Result<
         [LeagueEntry],URLError>>
-
+    func fetchRegisteredSummoner() -> String?
+    func registerSummoner(name: String?)
 }
 
 

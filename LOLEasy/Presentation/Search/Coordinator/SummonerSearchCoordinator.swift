@@ -9,7 +9,7 @@ import UIKit
 
 protocol SummonerSearchCoordinator: Coordinator {
     func showRegisterSummonerScene()
-    func popRegisterSummonerVC()
+    func popToRootVC()
 }
 
 protocol RegisterSummonerDelegate: AnyObject {
@@ -46,9 +46,8 @@ final class DefaultSummonerSearchCoordinator: SummonerSearchCoordinator {
         self.navigationController.pushViewController(vc, animated: true)
     }
     
-    func popRegisterSummonerVC() {
-        
-        self.navigationController.popViewController(animated: true)
+    func popToRootVC() {
+        self.navigationController.popToRootViewController(animated: true)
     }
     
 }

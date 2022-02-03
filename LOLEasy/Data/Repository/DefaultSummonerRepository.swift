@@ -10,10 +10,13 @@ import RxSwift
 
 final class DefaultSummonerRepository: SummonerRepository {
     private let riotAPIDataSource: RiotAPIDataSource
+    private let localDataSource: UserDefaultManager
     
-    init(riotAPIDataSource: RiotAPIDataSource) {
+    init(riotAPIDataSource: RiotAPIDataSource, localDataSource: UserDefaultManager = UserDefaultManager()) {
         self.riotAPIDataSource = riotAPIDataSource
+        self.localDataSource = localDataSource
     }
+    
     func fetchSummoner(id: String) -> Observable<Result<Summoner,URLError>> {
         return  self.riotAPIDataSource.fetchSummoner(id: id).compactMap { result in
             switch result {
@@ -40,5 +43,12 @@ final class DefaultSummonerRepository: SummonerRepository {
                 }
             
             }
+    }
+    
+    func fetchRegisteredSummoner() -> String? {
+        return self.localDataSource.registeredSummoner
+    }
+    func registerSummoner(name: String?) {
+        return self.localDataSource.registeredSummoner = name
     }
 }

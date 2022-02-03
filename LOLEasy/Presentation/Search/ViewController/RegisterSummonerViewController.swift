@@ -108,6 +108,12 @@ final class RegisterSummonerViewController: BaseViewController {
             }
         ).disposed(by: self.disposeBag)
         
+        output.registration.emit(
+            onNext: {
+                print("register!!!")
+            }
+        )
+            .disposed(by: self.disposeBag)
     }
 }
 
