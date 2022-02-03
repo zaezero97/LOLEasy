@@ -79,8 +79,9 @@ final class SummonerSearchViewController: BaseViewController {
         cardView.layer.cornerRadius = 16.0
         return cardView
     }()
+    
     var viewModel: SummonerSearchViewModel!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -148,7 +149,8 @@ final class SummonerSearchViewController: BaseViewController {
             didTapRegisterSummonerView: self.registerSummonerView.rx.tapGesture()
                 .when(.recognized)
                 .mapToVoid(),
-            viewWillAppear: self.rx.sentMessage(#selector(self.viewWillAppear(_:))).mapToVoid()
+            viewWillAppear: self.rx.sentMessage(#selector(self.viewWillAppear(_:))).mapToVoid(),
+            didTapUnRegisterButton: self.summonerCardView.unRegisterButton.rx.tap.asObservable().mapToVoid()
         )
         
         let output = self.viewModel.transform(from: input)
@@ -164,6 +166,15 @@ final class SummonerSearchViewController: BaseViewController {
             })
             .drive(self.summonerCardView.rx.summonerInfo)
             .disposed(by: self.disposeBag)
+        
+        output.unRegister
+            .emit(onNext: {
+                [weak self] _ in
+                self?.registerSummonerView.isHidden = false
+                self?.summonerCardView.isHidden = true
+            })
+            .disposed(by: self.disposeBag)
+                
     }
 }
 
@@ -179,7 +190,7 @@ private extension SummonerSearchViewController {
         view.layer.addSublayer(borderLayer)
     }
     
-     
+    
 }
 
 

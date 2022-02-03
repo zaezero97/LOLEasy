@@ -51,4 +51,8 @@ final class DefaultSummonerRepository: SummonerRepository {
     func registerSummoner(name: String?) {
         return self.localDataSource.registeredSummoner = name
     }
+    
+    func unRegisterSummoner() {
+        self.localDataSource.unRegisterSummoner()
+    }
 }

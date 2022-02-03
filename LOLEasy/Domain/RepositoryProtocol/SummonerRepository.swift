@@ -14,6 +14,7 @@ protocol SummonerRepository {
         [LeagueEntry],URLError>>
     func fetchRegisteredSummoner() -> String?
     func registerSummoner(name: String?)
+    func unRegisterSummoner()
 }
 
 

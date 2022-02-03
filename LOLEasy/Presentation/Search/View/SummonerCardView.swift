@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import RxSwift
+import RxCocoa
 import Kingfisher
 
 final class SummonerCardView: UIView {
@@ -39,6 +40,11 @@ final class SummonerCardView: UIView {
         return label
     }()
     
+    private(set) lazy var unRegisterButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        return button
+    }()
    
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,7 +61,8 @@ final class SummonerCardView: UIView {
             levelLabel,
             nameLabel,
             tierLabel,
-            tierImageView
+            tierImageView,
+            unRegisterButton
         ].forEach {
             self.addSubview($0)
         }
@@ -91,7 +98,10 @@ final class SummonerCardView: UIView {
             make.centerY.equalTo(tierImageView)
         }
         
-        
+        self.unRegisterButton.snp.makeConstraints { make in
+            make.trailing.top.equalToSuperview().inset(8.0)
+            make.width.height.equalTo(30.0)
+        }
     }
     
     func bind(summonerInfo: (Summoner,LeagueEntry)) {
@@ -115,3 +125,4 @@ extension Reactive where Base: SummonerCardView {
         }
     }
 }
+

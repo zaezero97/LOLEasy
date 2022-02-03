@@ -15,6 +15,7 @@ protocol SummonerInfoUseCase: AnyObject {
         LeagueEntry,URLError>>
     func fetchRegisteredSummoner() -> String?
     func registerSummoner(name: String?)
+    func unRegisterSummoner()
 }
 
 final class DefaultSummonerInfoUseCase: SummonerInfoUseCase {
@@ -53,4 +54,7 @@ final class DefaultSummonerInfoUseCase: SummonerInfoUseCase {
         self.summonerRepository.registerSummoner(name: name)
     }
     
+    func unRegisterSummoner() {
+        self.summonerRepository.unRegisterSummoner()
+    }
 }
