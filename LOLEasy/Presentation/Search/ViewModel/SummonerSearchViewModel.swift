@@ -61,15 +61,22 @@ final class SummonerSearchViewModel: ViewModelType {
             }
         
         let unRegister = input.didTapUnRegisterButton
-            .do(onNext: {
+            .do{
                 [weak self] _ in
                 self?.summonerInfoUseCase.unRegisterSummoner()
-            })
-                
+            }
+        
+        let searchSummoner = input.didTapSearchButton
+            .do(onNext: {
+                [weak self] name in
+                self?.coordinator?.showSearchResult(name: name)
+            }).mapToVoid()
+        
         return Output(
             showRegisterView: showRegisterView.asSignal(onErrorJustReturn: ()),
             summonerInfo: Observable.zip(fetchSummoner,fetchLeagueEntry).asDriver(onErrorDriveWith: Driver.empty()),
-            unRegister: unRegister.asSignal(onErrorJustReturn: ())
+            unRegister: unRegister.asSignal(onErrorJustReturn: ()),
+            searchSummoner: searchSummoner.asSignal(onErrorJustReturn: ())
         )
     }
     
@@ -83,11 +90,13 @@ extension SummonerSearchViewModel {
         let didTapRegisterSummonerView: Observable<Void>
         let viewWillAppear: Observable<Void>
         let didTapUnRegisterButton: Observable<Void>
+        let didTapSearchButton: Observable<String>
     }
     
     struct Output {
         let showRegisterView: Signal<Void>
         let summonerInfo: Driver<(Summoner,LeagueEntry)>
         let unRegister: Signal<Void>
+        let searchSummoner: Signal<Void>
     }
 }

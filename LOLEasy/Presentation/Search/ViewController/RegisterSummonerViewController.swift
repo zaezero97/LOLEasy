@@ -86,7 +86,7 @@ final class RegisterSummonerViewController: BaseViewController {
         
     }
     
-    override func binding() {
+    override func bind() {
         
         let tapRegisterButton = PublishSubject<Void>()
          

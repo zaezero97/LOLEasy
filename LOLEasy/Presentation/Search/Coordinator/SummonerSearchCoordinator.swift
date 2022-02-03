@@ -10,11 +10,8 @@ import UIKit
 protocol SummonerSearchCoordinator: Coordinator {
     func showRegisterSummonerScene()
     func popToRootVC()
+    func showSearchResult(name: String)
 }
-
-protocol RegisterSummonerDelegate: AnyObject {
-    func registerSummoner(summoner: Summoner)
-} 
 
 
 
@@ -23,7 +20,6 @@ final class DefaultSummonerSearchCoordinator: SummonerSearchCoordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
-    weak var delegate: RegisterSummonerDelegate?
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -51,5 +47,11 @@ final class DefaultSummonerSearchCoordinator: SummonerSearchCoordinator {
         self.navigationController.popToRootViewController(animated: true)
     }
     
+    func showSearchResult(name: String) {
+        let coordinator = DefaultSummonerRecordCoordinator(navigationController: self.navigationController)
+        coordinator.parentCoordinator = self
+        self.childCoordinators.append(coordinator)
+        coordinator.start(name: name)
+    }
 }
 

@@ -25,6 +25,8 @@
 		AE143BE9279FE554002BBD24 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BE8279FE554002BBD24 /* UIColor+.swift */; };
 		AE5115A227AB6F85005533E4 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5115A127AB6F85005533E4 /* UserDefaultManager.swift */; };
 		AE5115A427AB9B6E005533E4 /* SummonerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5115A327AB9B6E005533E4 /* SummonerCardView.swift */; };
+		AE5115A727ABB3D8005533E4 /* SummonerRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5115A627ABB3D8005533E4 /* SummonerRecordViewController.swift */; };
+		AE5115AE27ABB89B005533E4 /* SummonerRecordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5115AD27ABB89B005533E4 /* SummonerRecordCoordinator.swift */; };
 		AE53A41B27A0DC95004DFB9B /* RegisterSummonerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53A41A27A0DC95004DFB9B /* RegisterSummonerViewController.swift */; };
 		AE53A41D27A0E616004DFB9B /* RegisterSummoerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53A41C27A0E616004DFB9B /* RegisterSummoerViewModel.swift */; };
 		AEC284AC27A277B000B31BD2 /* RiotAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC284AB27A277B000B31BD2 /* RiotAPI.swift */; };
@@ -62,6 +64,8 @@
 		AE143BE8279FE554002BBD24 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		AE5115A127AB6F85005533E4 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		AE5115A327AB9B6E005533E4 /* SummonerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerCardView.swift; sourceTree = "<group>"; };
+		AE5115A627ABB3D8005533E4 /* SummonerRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerRecordViewController.swift; sourceTree = "<group>"; };
+		AE5115AD27ABB89B005533E4 /* SummonerRecordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerRecordCoordinator.swift; sourceTree = "<group>"; };
 		AE53A41A27A0DC95004DFB9B /* RegisterSummonerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSummonerViewController.swift; sourceTree = "<group>"; };
 		AE53A41C27A0E616004DFB9B /* RegisterSummoerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSummoerViewModel.swift; sourceTree = "<group>"; };
 		AEC284AB27A277B000B31BD2 /* RiotAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiotAPI.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 		AE143BCC279FCC74002BBD24 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				AE5115A527ABB381005533E4 /* Result */,
 				AE143BCF279FCE1A002BBD24 /* Search */,
 			);
 			path = Presentation;
@@ -261,6 +266,47 @@
 				AE5115A127AB6F85005533E4 /* UserDefaultManager.swift */,
 			);
 			path = Local;
+			sourceTree = "<group>";
+		};
+		AE5115A527ABB381005533E4 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				AE5115AC27ABB5DF005533E4 /* Coordinator */,
+				AE5115AB27ABB3F4005533E4 /* ViewModel */,
+				AE5115A927ABB3DF005533E4 /* View */,
+				AE5115A827ABB3DB005533E4 /* ViewController */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		AE5115A827ABB3DB005533E4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AE5115A627ABB3D8005533E4 /* SummonerRecordViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		AE5115A927ABB3DF005533E4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AE5115AB27ABB3F4005533E4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AE5115AC27ABB5DF005533E4 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				AE5115AD27ABB89B005533E4 /* SummonerRecordCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		AEC766F427A1134200EBF3E4 /* RepositoryProtocol */ = {
@@ -484,9 +530,11 @@
 				AEC766FF27A1159200EBF3E4 /* DefaultSummonerRepository.swift in Sources */,
 				AEC766FC27A1154200EBF3E4 /* SummonerRepository.swift in Sources */,
 				AEC7670C27A11BF900EBF3E4 /* SummonerRequestDTO.swift in Sources */,
+				AE5115AE27ABB89B005533E4 /* SummonerRecordCoordinator.swift in Sources */,
 				AEC766F827A113D800EBF3E4 /* SummonerInfoUseCase.swift in Sources */,
 				AE143BAC279FC7D7002BBD24 /* AppDelegate.swift in Sources */,
 				AEC7670727A1170A00EBF3E4 /* URL+.swift in Sources */,
+				AE5115A727ABB3D8005533E4 /* SummonerRecordViewController.swift in Sources */,
 				AEC766FA27A114BB00EBF3E4 /* Summoner.swift in Sources */,
 				AEC7670A27A118AD00EBF3E4 /* Config.swift in Sources */,
 				AE143BD3279FCE5A002BBD24 /* SummonerSearchCoordinator.swift in Sources */,

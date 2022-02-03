@@ -15,14 +15,14 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
-        self.binding()
+        self.bind()
     }
     
     func configureUI() {
         
     }
     
-    func binding() {
+    func bind() {
         
     }
     func showAlert(title:String, message: String) {

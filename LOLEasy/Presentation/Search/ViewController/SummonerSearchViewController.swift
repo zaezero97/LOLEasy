@@ -142,7 +142,7 @@ final class SummonerSearchViewController: BaseViewController {
         }
     }
     
-    override func binding() {
+    override func bind() {
         
         let input = SummonerSearchViewModel.Input(
             viewDidLoad: Observable.empty(),
@@ -150,7 +150,11 @@ final class SummonerSearchViewController: BaseViewController {
                 .when(.recognized)
                 .mapToVoid(),
             viewWillAppear: self.rx.sentMessage(#selector(self.viewWillAppear(_:))).mapToVoid(),
-            didTapUnRegisterButton: self.summonerCardView.unRegisterButton.rx.tap.asObservable().mapToVoid()
+            didTapUnRegisterButton: self.summonerCardView.unRegisterButton.rx.tap.asObservable().mapToVoid(),
+            didTapSearchButton: self.searchButton.rx.tap
+                .withLatestFrom(self.searchTextField.rx.text)
+                .compactMap{ $0 }
+                .filter{ !$0.isEmpty }
         )
         
         let output = self.viewModel.transform(from: input)
@@ -164,18 +168,20 @@ final class SummonerSearchViewController: BaseViewController {
                 [weak self] _ in
                 self?.registerSummonerView.isHidden = true
             })
-            .drive(self.summonerCardView.rx.summonerInfo)
-            .disposed(by: self.disposeBag)
-        
-        output.unRegister
-            .emit(onNext: {
-                [weak self] _ in
-                self?.registerSummonerView.isHidden = false
-                self?.summonerCardView.isHidden = true
-            })
-            .disposed(by: self.disposeBag)
+                .drive(self.summonerCardView.rx.summonerInfo)
+                .disposed(by: self.disposeBag)
                 
-    }
+                output.unRegister
+                .emit(onNext: {
+                    [weak self] _ in
+                    self?.registerSummonerView.isHidden = false
+                    self?.summonerCardView.isHidden = true
+                })
+                .disposed(by: self.disposeBag)
+                output.searchSummoner
+                .emit()
+                .disposed(by: self.disposeBag)
+                }
 }
 
 
