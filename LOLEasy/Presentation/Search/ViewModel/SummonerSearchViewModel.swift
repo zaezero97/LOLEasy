@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import CoreMedia
+
 
 final class SummonerSearchViewModel: ViewModelType {
     
