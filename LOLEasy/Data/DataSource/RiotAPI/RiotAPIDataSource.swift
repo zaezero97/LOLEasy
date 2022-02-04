@@ -42,6 +42,7 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
             }
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
+            
             return self.session.rx.data(request: request)
                 .map {
                     data in

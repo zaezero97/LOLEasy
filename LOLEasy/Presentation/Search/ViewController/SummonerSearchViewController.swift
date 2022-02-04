@@ -80,6 +80,12 @@ final class SummonerSearchViewController: BaseViewController {
         return cardView
     }()
     
+    private lazy var backBarButtonItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(title: nil, style: .plain, target: self, action: nil)
+        item.tintColor = .mainColor
+        return item
+    }()
+    
     var viewModel: SummonerSearchViewModel!
     
     override func viewDidLoad() {
@@ -91,7 +97,6 @@ final class SummonerSearchViewController: BaseViewController {
     }
     
     override func configureUI() {
-        
         [
             self.topColorView,
             self.titleImageView,
@@ -100,6 +105,8 @@ final class SummonerSearchViewController: BaseViewController {
             self.registerSummonerView,
             self.summonerCardView
         ].forEach { self.view.addSubview($0) }
+        
+        self.navigationItem.backBarButtonItem = self.backBarButtonItem
         
         self.topColorView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
