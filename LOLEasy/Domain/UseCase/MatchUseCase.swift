@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 protocol MatchUseCase {
-    func fetchMatchIds(puuid: String)
+    func fetchMatchIds(puuid: String) -> Observable<[String]>
 }
 
 
@@ -20,7 +20,7 @@ final class DefaultMatchUseCase: MatchUseCase {
     init(summonerRepository: SummonerRepository) {
         self.summonerRepository = summonerRepository
     }
-    func fetchMatchIds(puuid: String) {
-        self.summonerRepository.fetchMatchIds(puuid: puuid)
+    func fetchMatchIds(puuid: String) -> Observable<[String]> {
+        return self.summonerRepository.fetchMatchIds(puuid: puuid)
     }
 }

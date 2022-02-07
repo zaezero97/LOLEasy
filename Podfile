@@ -12,7 +12,7 @@ target 'LOLEasy' do
   pod 'Kingfisher', '~> 7.0'
   pod 'RxDataSources', '~> 5.0'
   pod 'Then'
-  pod 'Moya', '~> 15.0'
+  pod 'Moya/RxSwift', '~> 15.0'
   pod 'SnapKit'
   pod "RxAppState"
   pod "RxViewController"

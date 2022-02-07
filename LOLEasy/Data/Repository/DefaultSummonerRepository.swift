@@ -56,7 +56,7 @@ final class DefaultSummonerRepository: SummonerRepository {
         self.localDataSource.unRegisterSummoner()
     }
     
-    func fetchMatchIds(puuid: String) {
+    func fetchMatchIds(puuid: String) -> Observable<[String]> {
         return self.riotAPIDataSource.fetchMatchIds(puuid: puuid)
     }
 }

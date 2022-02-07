@@ -52,6 +52,12 @@ final class SummonerRecordViewController: BaseViewController {
                 print($0)
             })
             .disposed(by: self.disposeBag)
+        
+        output.matchIds
+            .drive(onNext: {
+                print($0)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     override func configureUI() {

@@ -16,6 +16,7 @@ final class SummonerRecordViewModel: ViewModelType {
     }
     struct Output{
         let summonerInfo: Driver<(Summoner,LeagueEntry)>
+        let matchIds: Driver<[String]>
     }
     
     private let matchUseCase: MatchUseCase
@@ -52,11 +53,18 @@ final class SummonerRecordViewModel: ViewModelType {
                 return leagueEntry
             }
         
+        let matchIds = fetchSummoner.flatMap {
+            [weak self] summoner -> Observable<[String]> in
+            guard let self = self else { return .empty() }
+            return self.matchUseCase.fetchMatchIds(puuid: summoner.puuid)
+        }
+        
         
         
         
         return Output(
-            summonerInfo: Observable.zip(fetchSummoner,fetchLeagueEntry).asDriver(onErrorDriveWith: Driver.empty())
+            summonerInfo: Observable.zip(fetchSummoner,fetchLeagueEntry).asDriver(onErrorDriveWith: Driver.empty()),
+            matchIds: matchIds.asDriver(onErrorJustReturn: [])
         )
     }
 }

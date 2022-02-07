@@ -16,8 +16,8 @@ protocol RiotAPIDataSource {
         SummonerResponseDTO,URLError>>
     func fetchLeagueEntry(id: String) -> Observable<Result<
         [LeagueEntryResponseDTO],URLError>>
-    func fetchMatchIds(puuid: String) 
-
+    func fetchMatchIds(puuid: String) -> Observable<[String]>
+    
 }
 
 final class DefaultRiotAPIDataSource: RiotAPIDataSource {
@@ -62,7 +62,7 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
                 }
                 .catch{ _ in .just(Result.failure(URLError(.cannotLoadFromNetwork)))}
             
-    }
+        }
     
     func fetchLeagueEntry(id: String) -> Observable<Result<
         [LeagueEntryResponseDTO],URLError>> {
@@ -72,7 +72,7 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
             
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
-           
+            
             return self.session.rx.data(request: request)
                 .map { data in
                     do {
@@ -82,23 +82,11 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
                         return .failure(URLError(.cannotParseResponse))
                     }
                 }.catch{ _ in .just(.failure(URLError(.cannotLoadFromNetwork)))}
-    }
-    
-    func fetchMatchIds(puuid: String) {
-        riotAPIProvider.request(.getMatchV5ids(puuid: puuid)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let ids = try JSONDecoder().decode([String].self, from: response.data)
-                    print(ids)
-                } catch (let error) {
-                    print(error.localizedDescription)
-                }
-                
-            case .failure(let error):
-                print("Error!!!",error)
-            }
         }
-
+    
+    func fetchMatchIds(puuid: String) -> Observable<[String]> {
+         return riotAPIProvider.rx.request(.getMatchV5ids(puuid: puuid), callbackQueue: .main)
+            .asObservable()
+            .map { (try? JSONDecoder().decode([String].self, from: $0.data)) ?? [] }
     }
 }
