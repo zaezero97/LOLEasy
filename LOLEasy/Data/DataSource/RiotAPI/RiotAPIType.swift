@@ -14,13 +14,13 @@ enum RiotAPIType {
 
 extension RiotAPIType: TargetType {
     var baseURL: URL {
-        return URL(string: "https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid")!
+        return URL(string: "https://asia.api.riotgames.com/lol/match/v5/matches")!
     }
     
     var path: String {
         switch self {
         case .getMatchV5ids(let puuid):
-            return "/\(puuid)/ids"
+            return "/by-puuid/\(puuid)/ids"
         }
     }
     
