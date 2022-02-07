@@ -17,13 +17,13 @@ protocol RiotAPIDataSource {
     func fetchLeagueEntry(id: String) -> Observable<Result<
         [LeagueEntryResponseDTO],URLError>>
     func fetchMatchIds(puuid: String) -> Observable<[String]>
-    
+    func fetchMatch(matchId: String) -> Observable<MatchResponseDTO>
 }
 
 final class DefaultRiotAPIDataSource: RiotAPIDataSource {
     private let session: URLSession
     private let riotAPI: RiotAPI
-    private let riotAPIProvider: MoyaProvider<RiotAPIType>
+    private let matchProvider: MoyaProvider<MatchAPI>
     private let headers: HTTPHeaders = [
         "Content-Type":"application/json;charset=utf-8",
         "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6,zh;q=0.5",
@@ -33,11 +33,11 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
     init(
         session: URLSession = .shared,
         riotAPI: RiotAPI = RiotAPI(),
-        riotAPIProvider: MoyaProvider<RiotAPIType> = MoyaProvider<RiotAPIType>()
+        matchProvider: MoyaProvider<MatchAPI> = MoyaProvider<MatchAPI>()
     ) {
         self.session = session
         self.riotAPI = riotAPI
-        self.riotAPIProvider = riotAPIProvider
+        self.matchProvider = matchProvider
     }
     func fetchSummoner(id: String) -> Observable<Result<
         SummonerResponseDTO,URLError>> {
@@ -85,8 +85,22 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
         }
     
     func fetchMatchIds(puuid: String) -> Observable<[String]> {
-         return riotAPIProvider.rx.request(.getMatchV5ids(puuid: puuid), callbackQueue: .main)
+        return matchProvider.rx.request(.getMatchV5ids(puuid: puuid), callbackQueue: .main)
             .asObservable()
             .map { (try? JSONDecoder().decode([String].self, from: $0.data)) ?? [] }
+    }
+    
+    func fetchMatch(matchId: String) -> Observable<MatchResponseDTO>  {
+        return matchProvider.rx.request(.getMatch(matchId: matchId))
+            .asObservable()
+            .compactMap {
+                do {
+                    let matchResponseDTO = try JSONDecoder().decode(MatchResponseDTO.self, from: $0.data)
+                    return matchResponseDTO
+                } catch(let error){
+                    print(error)
+                    return nil
+                }
+            }
     }
 }

@@ -59,4 +59,9 @@ final class DefaultSummonerRepository: SummonerRepository {
     func fetchMatchIds(puuid: String) -> Observable<[String]> {
         return self.riotAPIDataSource.fetchMatchIds(puuid: puuid)
     }
+    
+    func fetchMatch(matchId: String) -> Observable<Match> {
+        return self.riotAPIDataSource.fetchMatch(matchId: matchId)
+            .map{ $0.toDomain() }
+    }
 }

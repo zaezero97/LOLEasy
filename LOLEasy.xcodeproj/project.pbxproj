@@ -41,7 +41,9 @@
 		AEC7671027A137F000EBF3E4 /* LeagueEntryRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7670F27A137F000EBF3E4 /* LeagueEntryRequestDTO.swift */; };
 		AEC7671227A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7671127A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift */; };
 		AEEFBB5827A3A40D00E17FB9 /* RegisterAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEFBB5727A3A40C00E17FB9 /* RegisterAlertViewController.swift */; };
-		AEFAFAC627B0B90400066331 /* RiotAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFAFAC527B0B90400066331 /* RiotAPIType.swift */; };
+		AEFAFAC627B0B90400066331 /* MatchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFAFAC527B0B90400066331 /* MatchAPI.swift */; };
+		AEFAFAC827B0FC2200066331 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFAFAC727B0FC2200066331 /* Match.swift */; };
+		AEFAFACA27B1009700066331 /* MatchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFAFAC927B1009700066331 /* MatchResponseDTO.swift */; };
 		AEFEC0BA27AD098900429C43 /* SummonerRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFEC0B927AD098900429C43 /* SummonerRecordViewModel.swift */; };
 		AEFEC0BC27AD0A6600429C43 /* MatchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFEC0BB27AD0A6600429C43 /* MatchUseCase.swift */; };
 /* End PBXBuildFile section */
@@ -82,7 +84,9 @@
 		AEC7670F27A137F000EBF3E4 /* LeagueEntryRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntryRequestDTO.swift; sourceTree = "<group>"; };
 		AEC7671127A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntryResponseDTO.swift; sourceTree = "<group>"; };
 		AEEFBB5727A3A40C00E17FB9 /* RegisterAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAlertViewController.swift; sourceTree = "<group>"; };
-		AEFAFAC527B0B90400066331 /* RiotAPIType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiotAPIType.swift; sourceTree = "<group>"; };
+		AEFAFAC527B0B90400066331 /* MatchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchAPI.swift; sourceTree = "<group>"; };
+		AEFAFAC727B0FC2200066331 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		AEFAFAC927B1009700066331 /* MatchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResponseDTO.swift; sourceTree = "<group>"; };
 		AEFEC0B927AD098900429C43 /* SummonerRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerRecordViewModel.swift; sourceTree = "<group>"; };
 		AEFEC0BB27AD0A6600429C43 /* MatchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUseCase.swift; sourceTree = "<group>"; };
 		C9EC3D578D96F8EB713F87B8 /* Pods-LOLEasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLEasy.debug.xcconfig"; path = "Target Support Files/Pods-LOLEasy/Pods-LOLEasy.debug.xcconfig"; sourceTree = "<group>"; };
@@ -255,7 +259,7 @@
 			children = (
 				AEC7670127A115D100EBF3E4 /* RiotAPIDataSource.swift */,
 				AEC284AB27A277B000B31BD2 /* RiotAPI.swift */,
-				AEFAFAC527B0B90400066331 /* RiotAPIType.swift */,
+				AEFAFAC527B0B90400066331 /* MatchAPI.swift */,
 			);
 			path = RiotAPI;
 			sourceTree = "<group>";
@@ -332,6 +336,7 @@
 			children = (
 				AEC766F927A114BB00EBF3E4 /* Summoner.swift */,
 				AEC7670D27A1376A00EBF3E4 /* LeagueEntry.swift */,
+				AEFAFAC727B0FC2200066331 /* Match.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				AEC7670B27A11BF900EBF3E4 /* SummonerRequestDTO.swift */,
 				AEC7670F27A137F000EBF3E4 /* LeagueEntryRequestDTO.swift */,
 				AEC7671127A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift */,
+				AEFAFAC927B1009700066331 /* MatchResponseDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -520,7 +526,8 @@
 				AEFEC0BC27AD0A6600429C43 /* MatchUseCase.swift in Sources */,
 				AE5115A427AB9B6E005533E4 /* SummonerCardView.swift in Sources */,
 				AE53A41B27A0DC95004DFB9B /* RegisterSummonerViewController.swift in Sources */,
-				AEFAFAC627B0B90400066331 /* RiotAPIType.swift in Sources */,
+				AEFAFAC827B0FC2200066331 /* Match.swift in Sources */,
+				AEFAFAC627B0B90400066331 /* MatchAPI.swift in Sources */,
 				AEC7670227A115D100EBF3E4 /* RiotAPIDataSource.swift in Sources */,
 				AE53A41D27A0E616004DFB9B /* RegisterSummoerViewModel.swift in Sources */,
 				AEEFBB5827A3A40D00E17FB9 /* RegisterAlertViewController.swift in Sources */,
@@ -530,6 +537,7 @@
 				AEC766FC27A1154200EBF3E4 /* SummonerRepository.swift in Sources */,
 				AEC7670C27A11BF900EBF3E4 /* SummonerRequestDTO.swift in Sources */,
 				AE5115AE27ABB89B005533E4 /* SummonerRecordCoordinator.swift in Sources */,
+				AEFAFACA27B1009700066331 /* MatchResponseDTO.swift in Sources */,
 				AEC766F827A113D800EBF3E4 /* SummonerInfoUseCase.swift in Sources */,
 				AE143BAC279FC7D7002BBD24 /* AppDelegate.swift in Sources */,
 				AEC7670727A1170A00EBF3E4 /* URL+.swift in Sources */,

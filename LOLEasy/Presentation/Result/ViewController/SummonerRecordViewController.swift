@@ -53,9 +53,9 @@ final class SummonerRecordViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
-        output.matchIds
+        output.matches
             .drive(onNext: {
-                print($0)
+                print("matach",$0)
             })
             .disposed(by: self.disposeBag)
     }
