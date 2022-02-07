@@ -9,27 +9,32 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import Differentiator
 
 final class SummonerRecordViewController: BaseViewController {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         return collectionView
     }()
+    
+    var viewModel: SummonerRecordViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
     override func bind() {
-        self.view.backgroundColor = .systemBackground
+        self.viewModel.transform(from: SummonerRecordViewModel.Input(viewDidLoad: Observable.just("WNSkm5zXgOPLvZ_5a0ZKJxbOSIn-LLQ51PlamEZXxu4ExuRybHHX8UJ169lxeBl_ijCph-Ur6502Pw")))
     }
     
     override func configureUI() {
-        self.view.addSubview(collectionView)
+       // self.view.addSubview(collectionView)
+        self.view.backgroundColor = .systemBackground
         
-        collectionView.snp.makeConstraints { make in
-            make.edges.equalTo(self.view.safeAreaLayoutGuide)
-        }
+//        collectionView.snp.makeConstraints { make in
+//            make.edges.equalTo(self.view.safeAreaLayoutGuide)
+//        }
     }
 }
 
@@ -79,11 +84,18 @@ private extension SummonerRecordViewController {
         let section = NSCollectionLayoutSection(group: group)
         //section.orthogonalScrollingBehavior = .none
         section.contentInsets = .init(top: 0, leading: 5, bottom: 0, trailing: 5)
-        
         return section
     }
 }
 
+enum SearchResultSectionModel {
+    case summonerInfoSection(title: String, items: [SectionItem])
+    case recordSection(title: String, items: [SectionItem])
+}
+enum SectionItem {
+    case summonerInfoSectionItem(info: (summoner: Summoner, league: LeagueEntry))
+   // case recordSectionItem()
+}
 
 import SwiftUI
 struct SummonerRecordViewController_Priviews: PreviewProvider {

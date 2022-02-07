@@ -26,6 +26,9 @@ final class DefaultSummonerRecordCoordinator: SummonerRecordCoordinator {
     func start(name: String) {
         print("SummonerRecord Start!!! with \(name)")
         let vc = SummonerRecordViewController()
+        let matchUseCase = DefaultMatchUseCase(summonerRepository: DefaultSummonerRepository(riotAPIDataSource: DefaultRiotAPIDataSource()))
+        let viewModel = SummonerRecordViewModel(matchUseCase: matchUseCase)
+        vc.viewModel = viewModel
         self.navigationController.pushViewController(vc, animated: true)
     }
 }

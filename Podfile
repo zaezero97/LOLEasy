@@ -8,7 +8,10 @@ target 'LOLEasy' do
   # Pods for LOLEasy
 	pod 'RxGesture'
  	pod 'RxSwift', '6.5.0'
-  	pod 'RxCocoa', '6.5.0'
-  	pod 'Kingfisher', '~> 7.0'
-    pod 'RxDataSources', '~> 5.0'
+  pod 'RxCocoa', '6.5.0'
+  pod 'Kingfisher', '~> 7.0'
+  pod 'RxDataSources', '~> 5.0'
+  pod 'Then'
+  pod 'Moya', '~> 15.0'
+  pod 'SnapKit'
 end

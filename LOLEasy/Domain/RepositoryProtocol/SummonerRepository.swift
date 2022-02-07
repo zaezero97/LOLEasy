@@ -15,6 +15,7 @@ protocol SummonerRepository {
     func fetchRegisteredSummoner() -> String?
     func registerSummoner(name: String?)
     func unRegisterSummoner()
+    func fetchMatchIds(puuid: String) 
 }
 
 

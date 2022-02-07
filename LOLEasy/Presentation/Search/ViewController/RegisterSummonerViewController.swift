@@ -10,7 +10,6 @@ import RxSwift
 
 
 final class RegisterSummonerViewController: BaseViewController {
-    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "본인의 소환사 이름을 입력하세요."

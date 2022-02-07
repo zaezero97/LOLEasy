@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 import Alamofire
-
+import Moya
 
 
 protocol RiotAPIDataSource {
@@ -16,12 +16,14 @@ protocol RiotAPIDataSource {
         SummonerResponseDTO,URLError>>
     func fetchLeagueEntry(id: String) -> Observable<Result<
         [LeagueEntryResponseDTO],URLError>>
-//    func fetchSummonerIcon(iconId: Int) -> Single<Data>
+    func fetchMatchIds(puuid: String) 
+
 }
 
 final class DefaultRiotAPIDataSource: RiotAPIDataSource {
     private let session: URLSession
     private let riotAPI: RiotAPI
+    private let riotAPIProvider: MoyaProvider<RiotAPIType>
     private let headers: HTTPHeaders = [
         "Content-Type":"application/json;charset=utf-8",
         "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6,zh;q=0.5",
@@ -30,10 +32,12 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
     
     init(
         session: URLSession = .shared,
-        riotAPI: RiotAPI = RiotAPI()
+        riotAPI: RiotAPI = RiotAPI(),
+        riotAPIProvider: MoyaProvider<RiotAPIType> = MoyaProvider<RiotAPIType>()
     ) {
         self.session = session
         self.riotAPI = riotAPI
+        self.riotAPIProvider = riotAPIProvider
     }
     func fetchSummoner(id: String) -> Observable<Result<
         SummonerResponseDTO,URLError>> {
@@ -42,6 +46,7 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
             }
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
+            
             
             return self.session.rx.data(request: request)
                 .map {
@@ -67,7 +72,7 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
             
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
-            
+           
             return self.session.rx.data(request: request)
                 .map { data in
                     do {
@@ -77,5 +82,24 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
                         return .failure(URLError(.cannotParseResponse))
                     }
                 }.catch{ _ in .just(.failure(URLError(.cannotLoadFromNetwork)))}
+    }
+    
+    func fetchMatchIds(puuid: String) {
+        riotAPIProvider.request(.getMatchV5ids(puuid: puuid)) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let response):
+                do {
+                    let ids = try JSONDecoder().decode([String].self, from: response.data)
+                    print(ids)
+                } catch (let error) {
+                    print(error.localizedDescription)
+                }
+                
+            case .failure(let error):
+                print("Error!!!",error)
+            }
+        }
+
     }
 }

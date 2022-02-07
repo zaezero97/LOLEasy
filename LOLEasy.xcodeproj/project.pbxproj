@@ -12,8 +12,6 @@
 		AE143BAE279FC7D7002BBD24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BAD279FC7D7002BBD24 /* SceneDelegate.swift */; };
 		AE143BB5279FC7D8002BBD24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE143BB4279FC7D8002BBD24 /* Assets.xcassets */; };
 		AE143BB8279FC7D8002BBD24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE143BB6279FC7D8002BBD24 /* LaunchScreen.storyboard */; };
-		AE143BC1279FCB10002BBD24 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AE143BC0279FCB10002BBD24 /* SnapKit */; };
-		AE143BC4279FCB1C002BBD24 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = AE143BC3279FCB1C002BBD24 /* Alamofire */; };
 		AE143BC8279FCB86002BBD24 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BC7279FCB86002BBD24 /* AppCoordinator.swift */; };
 		AE143BCB279FCBA4002BBD24 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BCA279FCBA4002BBD24 /* Coordinator.swift */; };
 		AE143BD1279FCE52002BBD24 /* SummonerSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BD0279FCE52002BBD24 /* SummonerSearchViewController.swift */; };
@@ -43,6 +41,9 @@
 		AEC7671027A137F000EBF3E4 /* LeagueEntryRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7670F27A137F000EBF3E4 /* LeagueEntryRequestDTO.swift */; };
 		AEC7671227A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7671127A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift */; };
 		AEEFBB5827A3A40D00E17FB9 /* RegisterAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEFBB5727A3A40C00E17FB9 /* RegisterAlertViewController.swift */; };
+		AEFAFAC627B0B90400066331 /* RiotAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFAFAC527B0B90400066331 /* RiotAPIType.swift */; };
+		AEFEC0BA27AD098900429C43 /* SummonerRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFEC0B927AD098900429C43 /* SummonerRecordViewModel.swift */; };
+		AEFEC0BC27AD0A6600429C43 /* MatchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFEC0BB27AD0A6600429C43 /* MatchUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,9 @@
 		AEC7670F27A137F000EBF3E4 /* LeagueEntryRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntryRequestDTO.swift; sourceTree = "<group>"; };
 		AEC7671127A137FC00EBF3E4 /* LeagueEntryResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntryResponseDTO.swift; sourceTree = "<group>"; };
 		AEEFBB5727A3A40C00E17FB9 /* RegisterAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAlertViewController.swift; sourceTree = "<group>"; };
+		AEFAFAC527B0B90400066331 /* RiotAPIType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiotAPIType.swift; sourceTree = "<group>"; };
+		AEFEC0B927AD098900429C43 /* SummonerRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerRecordViewModel.swift; sourceTree = "<group>"; };
+		AEFEC0BB27AD0A6600429C43 /* MatchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUseCase.swift; sourceTree = "<group>"; };
 		C9EC3D578D96F8EB713F87B8 /* Pods-LOLEasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLEasy.debug.xcconfig"; path = "Target Support Files/Pods-LOLEasy/Pods-LOLEasy.debug.xcconfig"; sourceTree = "<group>"; };
 		DEFE31823E44469536052E42 /* Pods-LOLEasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLEasy.release.xcconfig"; path = "Target Support Files/Pods-LOLEasy/Pods-LOLEasy.release.xcconfig"; sourceTree = "<group>"; };
 		E1A6B626030635D78BB59F7A /* Pods_LOLEasy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LOLEasy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,8 +95,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE143BC1279FCB10002BBD24 /* SnapKit in Frameworks */,
-				AE143BC4279FCB1C002BBD24 /* Alamofire in Frameworks */,
 				33EFF08CEE92BDEDBD05FB61 /* Pods_LOLEasy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +255,7 @@
 			children = (
 				AEC7670127A115D100EBF3E4 /* RiotAPIDataSource.swift */,
 				AEC284AB27A277B000B31BD2 /* RiotAPI.swift */,
+				AEFAFAC527B0B90400066331 /* RiotAPIType.swift */,
 			);
 			path = RiotAPI;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 		AE5115AB27ABB3F4005533E4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				AEFEC0B927AD098900429C43 /* SummonerRecordViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -318,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				AEC766F727A113D800EBF3E4 /* SummonerInfoUseCase.swift */,
+				AEFEC0BB27AD0A6600429C43 /* MatchUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -403,8 +408,6 @@
 			);
 			name = LOLEasy;
 			packageProductDependencies = (
-				AE143BC0279FCB10002BBD24 /* SnapKit */,
-				AE143BC3279FCB1C002BBD24 /* Alamofire */,
 			);
 			productName = LOLEasy;
 			productReference = AE143BA8279FC7D7002BBD24 /* LOLEasy.app */;
@@ -435,8 +438,6 @@
 			);
 			mainGroup = AE143B9F279FC7D7002BBD24;
 			packageReferences = (
-				AE143BBF279FCB10002BBD24 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				AE143BC2279FCB1C002BBD24 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = AE143BA9279FC7D7002BBD24 /* Products */;
 			projectDirPath = "";
@@ -516,8 +517,10 @@
 				AEC766F327A112E000EBF3E4 /* Observable+.swift in Sources */,
 				AE143BC8279FCB86002BBD24 /* AppCoordinator.swift in Sources */,
 				AE143BDD279FD985002BBD24 /* ViewModelType.swift in Sources */,
+				AEFEC0BC27AD0A6600429C43 /* MatchUseCase.swift in Sources */,
 				AE5115A427AB9B6E005533E4 /* SummonerCardView.swift in Sources */,
 				AE53A41B27A0DC95004DFB9B /* RegisterSummonerViewController.swift in Sources */,
+				AEFAFAC627B0B90400066331 /* RiotAPIType.swift in Sources */,
 				AEC7670227A115D100EBF3E4 /* RiotAPIDataSource.swift in Sources */,
 				AE53A41D27A0E616004DFB9B /* RegisterSummoerViewModel.swift in Sources */,
 				AEEFBB5827A3A40D00E17FB9 /* RegisterAlertViewController.swift in Sources */,
@@ -531,6 +534,7 @@
 				AE143BAC279FC7D7002BBD24 /* AppDelegate.swift in Sources */,
 				AEC7670727A1170A00EBF3E4 /* URL+.swift in Sources */,
 				AE5115A727ABB3D8005533E4 /* SummonerRecordViewController.swift in Sources */,
+				AEFEC0BA27AD098900429C43 /* SummonerRecordViewModel.swift in Sources */,
 				AEC766FA27A114BB00EBF3E4 /* Summoner.swift in Sources */,
 				AEC7670A27A118AD00EBF3E4 /* Config.swift in Sources */,
 				AE143BD3279FCE5A002BBD24 /* SummonerSearchCoordinator.swift in Sources */,
@@ -750,38 +754,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		AE143BBF279FCB10002BBD24 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-		AE143BC2279FCB1C002BBD24 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		AE143BC0279FCB10002BBD24 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AE143BBF279FCB10002BBD24 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		AE143BC3279FCB1C002BBD24 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AE143BC2279FCB1C002BBD24 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AE143BA0279FC7D7002BBD24 /* Project object */;
 }

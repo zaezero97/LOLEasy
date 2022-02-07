@@ -55,4 +55,8 @@ final class DefaultSummonerRepository: SummonerRepository {
     func unRegisterSummoner() {
         self.localDataSource.unRegisterSummoner()
     }
+    
+    func fetchMatchIds(puuid: String) {
+        return self.riotAPIDataSource.fetchMatchIds(puuid: puuid)
+    }
 }
