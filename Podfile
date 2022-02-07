@@ -14,4 +14,6 @@ target 'LOLEasy' do
   pod 'Then'
   pod 'Moya', '~> 15.0'
   pod 'SnapKit'
+  pod "RxAppState"
+  pod "RxViewController"
 end

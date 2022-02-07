@@ -85,8 +85,7 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
     }
     
     func fetchMatchIds(puuid: String) {
-        riotAPIProvider.request(.getMatchV5ids(puuid: puuid)) { [weak self] result in
-            guard let self = self else { return }
+        riotAPIProvider.request(.getMatchV5ids(puuid: puuid)) { result in
             switch result {
             case .success(let response):
                 do {
