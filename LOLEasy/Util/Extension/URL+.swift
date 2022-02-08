@@ -17,4 +17,8 @@ extension URL {
     static func LEAGUE_V4(id: String) -> String {
         return "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/\(id)"
     }
+    
+    static func profileIconURL(id: Int) -> URL {
+        return URL(string: "https://ddragon.leagueoflegends.com/cdn/12.3.1/img/profileicon/\(id).png")!
+    }
 }
