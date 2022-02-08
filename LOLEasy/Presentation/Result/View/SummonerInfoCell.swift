@@ -72,9 +72,9 @@ final class SummonerInfoCell: UICollectionViewCell {
         
         self.renewalButton.snp.makeConstraints { make in
             make.leading.equalTo(self.iconImageView.snp.trailing).offset(16.0)
-            make.top.equalTo(self.nameLabel.snp.bottom).offset(32.0)
+            make.bottom.equalTo(self.iconImageView)
             make.height.equalTo(50.0)
-            make.width.equalTo(80.0)
+            make.width.equalTo(100.0)
         }
     }
     

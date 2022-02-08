@@ -69,6 +69,10 @@ final class TierCell: UICollectionViewCell {
             self.contentView.addSubview($0)
         }
         
+        self.contentView.layer.borderWidth = 1.0
+        self.contentView.layer.borderColor = UIColor.secondaryLabel.cgColor.copy(alpha: 0.1)
+        self.contentView.layer.cornerRadius = 6.0
+        
         self.tierImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(16.0)
             make.top.bottom.equalToSuperview().inset(8.0)
