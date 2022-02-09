@@ -13,11 +13,9 @@ final class UserDefaultManager {
     private let summonerRegistrationKey = "registeredSummoner"
      var registeredSummoner: String? {
          get {
-             print("get!!")
              return UserDefaults.standard.string(forKey: summonerRegistrationKey)
          }
          set {
-             print("set!!!")
              UserDefaults.standard.set(newValue, forKey: summonerRegistrationKey)
          }
     }

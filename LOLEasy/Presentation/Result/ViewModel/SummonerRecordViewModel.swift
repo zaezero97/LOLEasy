@@ -35,10 +35,8 @@ final class SummonerRecordViewModel: ViewModelType {
         
         let fetchSummoner = fetchSummonerResult.compactMap { result -> Summoner? in
             guard case let .success(summoner) = result else { return nil }
-            print("summoner", summoner)
             return summoner
         }
-        
         
         let fetchLeagueEntry = fetchSummonerResult.compactMap {
             [weak self] result -> Observable<Result<LeagueEntry,URLError>>? in
@@ -47,7 +45,6 @@ final class SummonerRecordViewModel: ViewModelType {
         }.flatMap{ $0 }
             .compactMap { result -> LeagueEntry? in
                 guard case let .success(leagueEntry) = result else { return nil }
-                print("leagueEntry", leagueEntry)
                 return leagueEntry
             }
         
@@ -58,9 +55,6 @@ final class SummonerRecordViewModel: ViewModelType {
         }
         
         let matches = matchIds.flatMap { Observable.from($0) }
-            .do(onNext: {
-                print("id!!!!",$0)
-            })
             .concatMap { [weak self] id -> Observable<Match>in
                 guard let self = self else { return .empty() }
                 return self.matchUseCase.fetchMatch(matchId: id)
@@ -72,11 +66,8 @@ final class SummonerRecordViewModel: ViewModelType {
             return self?.matchUseCase.getMyRecord(in: match, id: id)
         }
         .scan([Participant]()) { lastValue, newValue in
-            print("lastValue",lastValue)
             return lastValue + [newValue]
-        }.do(onNext: {
-            print("records",$0)
-        })
+        }
 
             
         
