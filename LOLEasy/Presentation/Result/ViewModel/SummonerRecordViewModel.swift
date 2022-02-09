@@ -58,18 +58,26 @@ final class SummonerRecordViewModel: ViewModelType {
         }
         
         let matches = matchIds.flatMap { Observable.from($0) }
-            .flatMap { [weak self] id -> Observable<Match>in
+            .do(onNext: {
+                print("id!!!!",$0)
+            })
+            .concatMap { [weak self] id -> Observable<Match>in
                 guard let self = self else { return .empty() }
                 return self.matchUseCase.fetchMatch(matchId: id)
             }
-        
-        let myRecords = Observable.combineLatest(matches,fetchSummoner)
-            .compactMap { [weak self] match,summoner in
-                return self?.matchUseCase.getMyRecord(in: match, id: summoner.id)
-            }
-            .scan([Participant]()) { lastValue, newValue in
-                return lastValue + [newValue]
-            }
+            
+        let myRecords = matches.withLatestFrom(fetchSummoner) { match, summoner in
+            return (match,summoner.id)
+        }.compactMap { [weak self] match,id in
+            return self?.matchUseCase.getMyRecord(in: match, id: id)
+        }
+        .scan([Participant]()) { lastValue, newValue in
+            print("lastValue",lastValue)
+            return lastValue + [newValue]
+        }.do(onNext: {
+            print("records",$0)
+        })
+
             
         
         return Output(
