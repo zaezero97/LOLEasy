@@ -22,6 +22,7 @@ final class SummonerRecordViewController: BaseViewController {
         $0.register(SummonerInfoCell.self, forCellWithReuseIdentifier: SummonerInfoCell.identifier)
         $0.register(TierCell.self, forCellWithReuseIdentifier: TierCell.identifier)
         $0.register(RecordCell.self, forCellWithReuseIdentifier: RecordCell.identifier)
+        $0.showsVerticalScrollIndicator = false
     }
     
     let name: String
@@ -51,34 +52,13 @@ final class SummonerRecordViewController: BaseViewController {
         
         let dataSource = self.createDataSource()
         
-//        output.summonerInfo
-//            .do(onNext: {
-//                print($0)
-//            })
-//            .map { (summoner,league) -> [SearchResultSectionModel] in
-//                let infoItem = SectionItem.summonerInfoSectionItem(summoner: summoner)
-//                let tierItem = SectionItem.tierSectionItem(league: league)
-//                return [
-//                    SearchResultSectionModel.summonerInfoSection(title: "info", items: [infoItem]),
-//                    SearchResultSectionModel.tierSection(title: "tier", items: [tierItem])
-//                ]
-//            }
-//            .drive(self.collectionView.rx.items(dataSource: dataSource))
-//            .disposed(by: self.disposeBag)
-//
+
         output.matches
             .drive(onNext: {
                 print("matach",$0)
             })
             .disposed(by: self.disposeBag)
         
-//        output.myRecord
-//            .map{ records -> [SearchResultSectionModel] in
-//                let items = records.map { SectionItem.recordSectionItem(myRecord: $0)}
-//                return [.recordSection(title: "record", items: items)]
-//            }
-//            .drive(self.collectionView.rx.items(dataSource: dataSource))
-//            .disposed(by: self.disposeBag)
         
         Observable.combineLatest(output.summonerInfo.asObservable(), output.myRecord.asObservable())
             .map { summonerInfo,records -> [SearchResultSectionModel] in
@@ -162,7 +142,7 @@ private extension SummonerRecordViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = .init(top: 10, leading: 5, bottom: 0, trailing: 5)
         //group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(150.0))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
         //section
         let section = NSCollectionLayoutSection(group: group)

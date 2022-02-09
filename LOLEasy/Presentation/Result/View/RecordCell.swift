@@ -113,6 +113,9 @@ final class RecordCell: UICollectionViewCell {
             self.contentView.addSubview($0)
         }
         
+        self.contentView.layer.borderWidth = 1.0
+        self.contentView.layer.borderColor = UIColor.mainColor.cgColor
+        
         self.resultView.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview()
             make.width.equalTo(80.0)
