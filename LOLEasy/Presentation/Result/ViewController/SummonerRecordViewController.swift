@@ -46,27 +46,52 @@ final class SummonerRecordViewController: BaseViewController {
         let input = SummonerRecordViewModel.Input(
             viewDidLoad: Observable.just(name)
         )
-       
+        
         let output = self.viewModel.transform(from: input)
         
         let dataSource = self.createDataSource()
         
-        output.summonerInfo
-            .map { (summoner,league) -> [SearchResultSectionModel] in
-                let infoItem = SectionItem.summonerInfoSectionItem(summoner: summoner)
-                let tierItem = SectionItem.tierSectionItem(league: league)
-                return [
-                    SearchResultSectionModel.summonerInfoSection(title: "info", items: [infoItem]),
-                    SearchResultSectionModel.tierSection(title: "tier", items: [tierItem])
-                ]
-            }
-            .drive(self.collectionView.rx.items(dataSource: dataSource))
-            .disposed(by: self.disposeBag)
-        
+//        output.summonerInfo
+//            .do(onNext: {
+//                print($0)
+//            })
+//            .map { (summoner,league) -> [SearchResultSectionModel] in
+//                let infoItem = SectionItem.summonerInfoSectionItem(summoner: summoner)
+//                let tierItem = SectionItem.tierSectionItem(league: league)
+//                return [
+//                    SearchResultSectionModel.summonerInfoSection(title: "info", items: [infoItem]),
+//                    SearchResultSectionModel.tierSection(title: "tier", items: [tierItem])
+//                ]
+//            }
+//            .drive(self.collectionView.rx.items(dataSource: dataSource))
+//            .disposed(by: self.disposeBag)
+//
         output.matches
             .drive(onNext: {
                 print("matach",$0)
             })
+            .disposed(by: self.disposeBag)
+        
+//        output.myRecord
+//            .map{ records -> [SearchResultSectionModel] in
+//                let items = records.map { SectionItem.recordSectionItem(myRecord: $0)}
+//                return [.recordSection(title: "record", items: items)]
+//            }
+//            .drive(self.collectionView.rx.items(dataSource: dataSource))
+//            .disposed(by: self.disposeBag)
+        
+        Observable.combineLatest(output.summonerInfo.asObservable(), output.myRecord.asObservable())
+            .map { summonerInfo,records -> [SearchResultSectionModel] in
+                let infoItem = SectionItem.summonerInfoSectionItem(summoner: summonerInfo.0)
+                let tierItem = SectionItem.tierSectionItem(league: summonerInfo.1)
+                let recordItems = records.map{ SectionItem.recordSectionItem(myRecord: $0) }
+                return [
+                    SearchResultSectionModel.summonerInfoSection(title: "info", items: [infoItem]),
+                    SearchResultSectionModel.tierSection(title: "tier", items: [tierItem]),
+                    SearchResultSectionModel.recordSection(title: "record", items: recordItems)
+                ]
+            }.asDriver(onErrorJustReturn: [])
+            .drive(self.collectionView.rx.items(dataSource: dataSource))
             .disposed(by: self.disposeBag)
     }
     
@@ -137,7 +162,7 @@ private extension SummonerRecordViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = .init(top: 10, leading: 5, bottom: 0, trailing: 5)
         //group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(100))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(100.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
         //section
         let section = NSCollectionLayoutSection(group: group)
@@ -149,21 +174,20 @@ private extension SummonerRecordViewController {
     func createDataSource() -> RxCollectionViewSectionedReloadDataSource<SearchResultSectionModel> {
         return RxCollectionViewSectionedReloadDataSource<SearchResultSectionModel>(configureCell: {
             datasource, collectionView, indexPath, item in
-                print(indexPath)
-                switch item {
-                case .summonerInfoSectionItem(summoner: let summoner):
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SummonerInfoCell.identifier, for: indexPath) as! SummonerInfoCell
-                    cell.update(with: summoner)
-                    return cell
-                case .tierSectionItem(league: let league):
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TierCell.identifier, for: indexPath) as! TierCell
-                    cell.update(with: league)
-                    return cell
-                case .recordSectionItem(match: let match):
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordCell.identifier, for: indexPath) as! RecordCell
-                    cell.update(with: match)
-                    return cell
-                }
+            switch item {
+            case .summonerInfoSectionItem(summoner: let summoner):
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SummonerInfoCell.identifier, for: indexPath) as! SummonerInfoCell
+                cell.update(with: summoner)
+                return cell
+            case .tierSectionItem(league: let league):
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TierCell.identifier, for: indexPath) as! TierCell
+                cell.update(with: league)
+                return cell
+            case .recordSectionItem(myRecord: let myRecord):
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordCell.identifier, for: indexPath) as! RecordCell
+                cell.update(with: myRecord)
+                return cell
+            }
         },configureSupplementaryView: {
             datasource, collectionView, kind, indexPath in
             return UICollectionReusableView()
@@ -171,7 +195,7 @@ private extension SummonerRecordViewController {
         
     }
     
-
+    
 }
 
 
@@ -184,7 +208,7 @@ enum SearchResultSectionModel {
 enum SectionItem {
     case summonerInfoSectionItem(summoner: Summoner)
     case tierSectionItem(league: LeagueEntry)
-    case recordSectionItem(match: Match)
+    case recordSectionItem(myRecord: Participant)
 }
 
 extension SearchResultSectionModel: SectionModelType {

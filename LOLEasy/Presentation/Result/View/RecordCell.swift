@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import Kingfisher
 
 final class RecordCell: UICollectionViewCell {
     static let identifier = "RecordCell"
@@ -106,7 +107,8 @@ final class RecordCell: UICollectionViewCell {
             characterStackView,
             championImageView,
             killScoreLabel,
-            elapsedTimeLabel
+            elapsedTimeLabel,
+            itemStackView
         ].forEach {
             self.contentView.addSubview($0)
         }
@@ -154,7 +156,12 @@ final class RecordCell: UICollectionViewCell {
         }
     }
     
-    func update(with: Match) {
-        print("update!!!")
+    func update(with myRecord: Participant) {
+        self.championImageView.kf.setImage(
+            with: URL.championIconURL(name: myRecord.championName),
+            placeholder: UIImage(systemName: "face.smiling.fill"),
+            options: [.processor(RoundCornerImageProcessor(cornerRadius: 16.0))]
+        )
+       
     }
 }

@@ -21,4 +21,20 @@ extension URL {
     static func profileIconURL(id: Int) -> URL {
         return URL(string: "https://ddragon.leagueoflegends.com/cdn/12.3.1/img/profileicon/\(id).png")!
     }
+    
+    static func championIconURL(name: String) -> URL {
+        return URL(string: "https://ddragon.leagueoflegends.com/cdn/12.3.1/img/champion/\(name).png")!
+    }
+    
+    static func spellIconURL(name: String) -> URL {
+        return URL(string: "https://ddragon.leagueoflegends.com/cdn/12.3.1/img/spell/\(name).png")!
+    }
+    
+    static func runeIconURL(path: String) -> URL {
+        return URL(string: "https://ddragon.leagueoflegends.com/cdn/img/\(path)")!
+    }
+    
+    static func itemIconURL(id: Int) -> URL {
+        return URL(string: "https://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/\(id).png")!
+    }
 }

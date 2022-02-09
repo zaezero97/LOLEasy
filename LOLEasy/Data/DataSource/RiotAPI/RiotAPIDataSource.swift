@@ -93,12 +93,13 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
     func fetchMatch(matchId: String) -> Observable<MatchResponseDTO>  {
         return matchProvider.rx.request(.getMatch(matchId: matchId))
             .asObservable()
+            .debug()
             .compactMap {
                 do {
                     let matchResponseDTO = try JSONDecoder().decode(MatchResponseDTO.self, from: $0.data)
                     return matchResponseDTO
                 } catch(let error){
-                    print(error)
+                    print("Error!!",error)
                     return nil
                 }
             }

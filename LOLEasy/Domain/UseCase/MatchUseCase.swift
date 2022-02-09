@@ -12,6 +12,7 @@ import RxCocoa
 protocol MatchUseCase {
     func fetchMatchIds(puuid: String) -> Observable<[String]>
     func fetchMatch(matchId: String) -> Observable<Match>
+    func getMyRecord(in match: Match, id: String) -> Participant
 }
 
 
@@ -27,6 +28,12 @@ final class DefaultMatchUseCase: MatchUseCase {
     }
     
     func fetchMatch(matchId: String) -> Observable<Match> {
-        self.summonerRepository.fetchMatch(matchId: matchId)
+        return self.summonerRepository.fetchMatch(matchId: matchId)
+    }
+    
+    func getMyRecord(in match: Match, id: String) -> Participant {
+        return match.info.participants.first {
+            $0.summonerId == id
+        }!
     }
 }

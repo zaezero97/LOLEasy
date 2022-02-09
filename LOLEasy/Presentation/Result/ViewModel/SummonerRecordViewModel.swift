@@ -17,6 +17,7 @@ final class SummonerRecordViewModel: ViewModelType {
     struct Output{
         let summonerInfo: Driver<(Summoner,LeagueEntry)>
         let matches: Driver<Match>
+        let myRecord: Driver<[Participant]>
     }
     
     private let matchUseCase: MatchUseCase
@@ -30,28 +31,25 @@ final class SummonerRecordViewModel: ViewModelType {
     func transform(from input: Input) -> Output {
         
         let fetchSummonerResult = input.viewDidLoad
-            .do(onNext: {
-                print($0)
-            })
             .flatMap(self.summonerInfoUseCase.fetchSummoner(id:))
         
-                let fetchSummoner = fetchSummonerResult.compactMap { result -> Summoner? in
-                    guard case let .success(summoner) = result else { return nil }
-                    print("summoner", summoner)
-                    return summoner
-                }
-                
-                
-                let fetchLeagueEntry = fetchSummonerResult.compactMap {
-                    [weak self] result -> Observable<Result<LeagueEntry,URLError>>? in
-                    guard case let .success(summoner) = result else { return nil }
-                    return self?.summonerInfoUseCase.fetchLeagueEntry(id: summoner.id)
-                }.flatMap{ $0 }
-                .compactMap { result -> LeagueEntry? in
-                    guard case let .success(leagueEntry) = result else { return nil }
-                    print("leagueEntry", leagueEntry)
-                    return leagueEntry
-                }
+        let fetchSummoner = fetchSummonerResult.compactMap { result -> Summoner? in
+            guard case let .success(summoner) = result else { return nil }
+            print("summoner", summoner)
+            return summoner
+        }
+        
+        
+        let fetchLeagueEntry = fetchSummonerResult.compactMap {
+            [weak self] result -> Observable<Result<LeagueEntry,URLError>>? in
+            guard case let .success(summoner) = result else { return nil }
+            return self?.summonerInfoUseCase.fetchLeagueEntry(id: summoner.id)
+        }.flatMap{ $0 }
+            .compactMap { result -> LeagueEntry? in
+                guard case let .success(leagueEntry) = result else { return nil }
+                print("leagueEntry", leagueEntry)
+                return leagueEntry
+            }
         
         let matchIds = fetchSummoner.flatMap {
             [weak self] summoner -> Observable<[String]> in
@@ -65,10 +63,19 @@ final class SummonerRecordViewModel: ViewModelType {
                 return self.matchUseCase.fetchMatch(matchId: id)
             }
         
+        let myRecords = Observable.combineLatest(matches,fetchSummoner)
+            .compactMap { [weak self] match,summoner in
+                return self?.matchUseCase.getMyRecord(in: match, id: summoner.id)
+            }
+            .scan([Participant]()) { lastValue, newValue in
+                return lastValue + [newValue]
+            }
+            
         
         return Output(
             summonerInfo: Observable.zip(fetchSummoner,fetchLeagueEntry).asDriver(onErrorDriveWith: Driver.empty()),
-            matches: matches.asDriver(onErrorDriveWith: .empty())
+            matches: matches.asDriver(onErrorDriveWith: .empty()),
+            myRecord: myRecords.asDriver(onErrorJustReturn: [])
         )
     }
 }
