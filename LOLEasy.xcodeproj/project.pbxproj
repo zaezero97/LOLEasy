@@ -22,6 +22,7 @@
 		AE143BE9279FE554002BBD24 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143BE8279FE554002BBD24 /* UIColor+.swift */; };
 		AE176A2727B1F0800040A4C3 /* SummonerInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE176A2627B1F0800040A4C3 /* SummonerInfoCell.swift */; };
 		AE176A2927B1F4DA0040A4C3 /* TierCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE176A2827B1F4DA0040A4C3 /* TierCell.swift */; };
+		AE176A2D27B237960040A4C3 /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE176A2C27B237960040A4C3 /* RecordCell.swift */; };
 		AE5115A227AB6F85005533E4 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5115A127AB6F85005533E4 /* UserDefaultManager.swift */; };
 		AE5115A427AB9B6E005533E4 /* SummonerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5115A327AB9B6E005533E4 /* SummonerCardView.swift */; };
 		AE5115A727ABB3D8005533E4 /* SummonerRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5115A627ABB3D8005533E4 /* SummonerRecordViewController.swift */; };
@@ -67,6 +68,7 @@
 		AE143BE8279FE554002BBD24 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		AE176A2627B1F0800040A4C3 /* SummonerInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerInfoCell.swift; sourceTree = "<group>"; };
 		AE176A2827B1F4DA0040A4C3 /* TierCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TierCell.swift; sourceTree = "<group>"; };
+		AE176A2C27B237960040A4C3 /* RecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 		AE5115A127AB6F85005533E4 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		AE5115A327AB9B6E005533E4 /* SummonerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerCardView.swift; sourceTree = "<group>"; };
 		AE5115A627ABB3D8005533E4 /* SummonerRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerRecordViewController.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			children = (
 				AE176A2627B1F0800040A4C3 /* SummonerInfoCell.swift */,
 				AE176A2827B1F4DA0040A4C3 /* TierCell.swift */,
+				AE176A2C27B237960040A4C3 /* RecordCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				AEC766FF27A1159200EBF3E4 /* DefaultSummonerRepository.swift in Sources */,
 				AEC766FC27A1154200EBF3E4 /* SummonerRepository.swift in Sources */,
 				AEC7670C27A11BF900EBF3E4 /* SummonerRequestDTO.swift in Sources */,
+				AE176A2D27B237960040A4C3 /* RecordCell.swift in Sources */,
 				AE5115AE27ABB89B005533E4 /* SummonerRecordCoordinator.swift in Sources */,
 				AEFAFACA27B1009700066331 /* MatchResponseDTO.swift in Sources */,
 				AEC766F827A113D800EBF3E4 /* SummonerInfoUseCase.swift in Sources */,

@@ -21,7 +21,7 @@ final class SummonerRecordViewController: BaseViewController {
     ).then {
         $0.register(SummonerInfoCell.self, forCellWithReuseIdentifier: SummonerInfoCell.identifier)
         $0.register(TierCell.self, forCellWithReuseIdentifier: TierCell.identifier)
-        
+        $0.register(RecordCell.self, forCellWithReuseIdentifier: RecordCell.identifier)
     }
     
     let name: String
@@ -60,9 +60,6 @@ final class SummonerRecordViewController: BaseViewController {
                     SearchResultSectionModel.tierSection(title: "tier", items: [tierItem])
                 ]
             }
-            .do(onNext: {
-                print($0)
-            })
             .drive(self.collectionView.rx.items(dataSource: dataSource))
             .disposed(by: self.disposeBag)
         
@@ -95,6 +92,8 @@ private extension SummonerRecordViewController {
                 return self.createSummonerInfoLayout()
             case 1:
                 return self.createTierLayout()
+            case 2:
+                return self.createRecordLayout()
             default:
                 return nil
             }
@@ -132,35 +131,44 @@ private extension SummonerRecordViewController {
         
         return section
     }
-//    func createRecordLayout() -> NSCollectionLayoutSection {
-//        //item
-//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(0.75))
-//        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//        item.contentInsets = .init(top: 10, leading: 5, bottom: 0, trailing: 5)
-//        //group
-//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(100))
-//        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-//        //section
-//        let section = NSCollectionLayoutSection(group: group)
-//        //section.orthogonalScrollingBehavior = .none
-//        section.contentInsets = .init(top: 0, leading: 5, bottom: 0, trailing: 5)
-//        return section
-//    }
+    func createRecordLayout() -> NSCollectionLayoutSection {
+        //item
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(0.75))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: 10, leading: 5, bottom: 0, trailing: 5)
+        //group
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(100))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        //section
+        let section = NSCollectionLayoutSection(group: group)
+        //section.orthogonalScrollingBehavior = .none
+        section.contentInsets = .init(top: 0, leading: 5, bottom: 0, trailing: 5)
+        return section
+    }
     
     func createDataSource() -> RxCollectionViewSectionedReloadDataSource<SearchResultSectionModel> {
-        return RxCollectionViewSectionedReloadDataSource<SearchResultSectionModel> { datasource, collectionView, indexPath, item in
-            print(indexPath)
-            switch item {
-            case .summonerInfoSectionItem(summoner: let summoner):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SummonerInfoCell.identifier, for: indexPath) as! SummonerInfoCell
-                cell.update(with: summoner)
-                return cell
-            case .tierSectionItem(league: let league):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TierCell.identifier, for: indexPath) as! TierCell
-                cell.update(with: league)
-                return cell
-            }
-        }
+        return RxCollectionViewSectionedReloadDataSource<SearchResultSectionModel>(configureCell: {
+            datasource, collectionView, indexPath, item in
+                print(indexPath)
+                switch item {
+                case .summonerInfoSectionItem(summoner: let summoner):
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SummonerInfoCell.identifier, for: indexPath) as! SummonerInfoCell
+                    cell.update(with: summoner)
+                    return cell
+                case .tierSectionItem(league: let league):
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TierCell.identifier, for: indexPath) as! TierCell
+                    cell.update(with: league)
+                    return cell
+                case .recordSectionItem(match: let match):
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordCell.identifier, for: indexPath) as! RecordCell
+                    cell.update(with: match)
+                    return cell
+                }
+        },configureSupplementaryView: {
+            datasource, collectionView, kind, indexPath in
+            return UICollectionReusableView()
+        })
+        
     }
     
 
@@ -171,12 +179,12 @@ private extension SummonerRecordViewController {
 enum SearchResultSectionModel {
     case summonerInfoSection(title: String, items: [SectionItem])
     case tierSection(title: String, items: [SectionItem])
-    //case recordSection(title: String, items: [SectionItem])
+    case recordSection(title: String, items: [SectionItem])
 }
 enum SectionItem {
     case summonerInfoSectionItem(summoner: Summoner)
     case tierSectionItem(league: LeagueEntry)
-   // case recordSectionItem()
+    case recordSectionItem(match: Match)
 }
 
 extension SearchResultSectionModel: SectionModelType {
@@ -186,6 +194,8 @@ extension SearchResultSectionModel: SectionModelType {
             self = .summonerInfoSection(title: title, items: items)
         case .tierSection(title: let title, items: _):
             self = .tierSection(title: title, items: items)
+        case .recordSection(title: let title, items: _):
+            self = .recordSection(title: title, items: items)
         }
     }
     
@@ -196,6 +206,8 @@ extension SearchResultSectionModel: SectionModelType {
         case .summonerInfoSection(_, let items):
             return items
         case .tierSection(_, let items):
+            return items
+        case .recordSection(title: _, items: let items):
             return items
         }
     }
