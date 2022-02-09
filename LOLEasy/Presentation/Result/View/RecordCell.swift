@@ -131,7 +131,7 @@ final class RecordCell: UICollectionViewCell {
         self.championImageView.snp.makeConstraints { make in
             make.leading.equalTo(self.resultView.snp.trailing).offset(8.0)
             make.top.equalToSuperview().inset(8.0)
-            make.width.height.equalTo(40.0)
+            make.width.height.equalTo(50.0)
         }
         
         self.characterStackView.snp.makeConstraints { make in
