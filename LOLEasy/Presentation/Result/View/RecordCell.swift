@@ -166,5 +166,6 @@ final class RecordCell: UICollectionViewCell {
             options: [.processor(RoundCornerImageProcessor(cornerRadius: 16.0))]
         )
        
+        self.killScoreLabel.text = "\(myRecord.kills) / \(myRecord.deaths) / \(myRecord.assists)"
     }
 }
