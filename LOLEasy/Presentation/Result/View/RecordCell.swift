@@ -151,7 +151,7 @@ final class RecordCell: UICollectionViewCell {
             make.top.equalTo(self.championImageView.snp.bottom).offset(8.0)
             make.bottom.equalToSuperview().inset(8.0)
             make.leading.equalTo(self.championImageView)
-            make.trailing.equalTo(self.killScoreLabel)
+            make.trailing.equalToSuperview().inset(8.0)
         }
         
         self.elapsedTimeLabel.snp.makeConstraints { make in
@@ -167,5 +167,13 @@ final class RecordCell: UICollectionViewCell {
         )
        
         self.killScoreLabel.text = "\(myRecord.kills) / \(myRecord.deaths) / \(myRecord.assists)"
+        let items = myRecord.toItemArray()
+        for i in itemimageViews.indices {
+            itemimageViews[i].kf.setImage(
+                with: URL.itemIconURL(id: items[i]),
+                placeholder: UIImage()
+            )
+        }
+        
     }
 }

@@ -41,6 +41,18 @@ struct Participant: Codable {
     let summonerName: String
     let summonerId: String
     let perks: Perk
+    
+    func toItemArray() -> [Int] {
+        return [
+            item0,
+            item1,
+            item2,
+            item3,
+            item4,
+            item5,
+            item6
+        ]
+    }
 }
 
 struct Perk: Codable {
