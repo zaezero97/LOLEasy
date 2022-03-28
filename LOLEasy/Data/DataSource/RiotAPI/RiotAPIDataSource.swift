@@ -76,6 +76,7 @@ final class DefaultRiotAPIDataSource: RiotAPIDataSource {
             return self.session.rx.data(request: request)
                 .map { data in
                     do {
+                        print("data", data)
                         let leagueEntryResponseDTOs = try JSONDecoder().decode([LeagueEntryResponseDTO].self, from: data)
                         return .success(leagueEntryResponseDTOs)
                     } catch {

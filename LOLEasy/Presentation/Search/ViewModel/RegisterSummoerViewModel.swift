@@ -42,6 +42,7 @@ final class RegisterSummonerViewModel: ViewModelType {
             .withLatestFrom(input.summonerName)
             .compactMap{ $0 }
             .flatMap(self.summonerInfoUseCase.fetchSummoner)
+            .debug()
             .share()
         
         let fetchSummoner = fetchSummonerResult.compactMap { result -> Summoner? in
@@ -55,12 +56,15 @@ final class RegisterSummonerViewModel: ViewModelType {
             [weak self] result -> Observable<Result<LeagueEntry,URLError>>? in
             guard case let .success(summoner) = result else { return nil }
             return self?.summonerInfoUseCase.fetchLeagueEntry(id: summoner.id)
-        }.flatMap{ $0 }
+        }
+            .debug()
+            .flatMap{ $0 }
             .compactMap { result -> LeagueEntry? in
                 guard case let .success(leagueEntry) = result else { return nil }
                 print("leagueEntry", leagueEntry)
                 return leagueEntry
             }
+            
         
         let errorMessage = fetchSummonerResult.compactMap { result -> String? in
             guard case let .failure(error) = result else { return nil }

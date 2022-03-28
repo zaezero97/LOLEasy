@@ -89,7 +89,7 @@ final class TierCell: UICollectionViewCell {
     func update(with league: LeagueEntry) {
         self.tierImageView.image = league.tier?.icon
         self.winningRateLabel.text = "\(league.wins)승 \(league.losses)패 (\( (league.wins + league.losses) / league.wins)%)"
-        self.typeLabel.text = league.queueType.rawValue
+        self.typeLabel.text = league.queueType
         self.tierLabel.text = "\(league.tier?.rawValue ?? "") \(league.rank ?? "") "
         self.pointLabel.text = "\(league.leaguePoints)LP"
     }

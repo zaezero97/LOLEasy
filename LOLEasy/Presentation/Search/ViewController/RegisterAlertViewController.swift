@@ -231,7 +231,7 @@ struct CustomAlertViewController_Priviews: PreviewProvider {
         func makeUIViewController(context: Context) -> UIViewController {
             let vc = RegisterAlertViewController(
                 summoner: Summoner(accountId: "", profileIconId: 123213123213, name: "제제로", id: "", puuid: "", summonerLevel: 100),
-                leagueEntry: LeagueEntry(queueType: .RANKED_SOLO_5x5, tier: .challenger, rank: "100", leaguePoints: 56, wins: 42, losses: 23)
+                leagueEntry: LeagueEntry(queueType: "RANKED_SOLO_5x5", tier: .challenger, rank: "100", leaguePoints: 56, wins: 42, losses: 23)
             ) //보고 싶은 뷰컨 객체
             return vc
         }

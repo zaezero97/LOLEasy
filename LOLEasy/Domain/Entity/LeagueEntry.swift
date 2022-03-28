@@ -11,10 +11,11 @@ enum QueueType: String, Decodable {
     case RANKED_TFT_PAIRS
     case RANKED_SOLO_5x5
     case RANKED_TEAM_5x5
+    case RANKED_FLEX_SR
 }
 
 struct LeagueEntry {
-    let queueType: QueueType
+    let queueType: String
     let tier: Tier?
     let rank: String?
     let leaguePoints: Int

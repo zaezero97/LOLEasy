@@ -101,7 +101,9 @@ final class RegisterSummonerViewController: BaseViewController {
             self?.showAlert(title: "실패", message: errorMessage)
         }).disposed(by: self.disposeBag)
         
-        output.summonerInfo.drive(
+        output.summonerInfo
+            .debug()
+            .drive(
             onNext: { [weak self] summonerInfo in
                 self?.showRegisterAlert(summonerInfo: summonerInfo, observer: tapRegisterButton.asObserver())
             }

@@ -36,10 +36,12 @@ final class DefaultSummonerInfoUseCase: SummonerInfoUseCase {
                 result -> Result<LeagueEntry, URLError> in
                 switch result {
                 case let .success(leagueEntrys):
+                    print("test", leagueEntrys)
                     return .success(leagueEntrys.first(where: {
-                        $0.queueType == .RANKED_SOLO_5x5
+                        $0.queueType == "RANKED_SOLO_5x5"
                     })!)
                 case let .failure(error):
+                    print("error", error)
                     return .failure(error)
                 }
             }

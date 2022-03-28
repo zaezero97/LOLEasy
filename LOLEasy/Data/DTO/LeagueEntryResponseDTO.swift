@@ -8,7 +8,7 @@
 import Foundation
 
 struct LeagueEntryResponseDTO: Decodable {
-    let leagudId: String?
+    let leaguedId: String?
     let summonerId: String
     let summonerName: String
     let queueType: QueueType
@@ -23,7 +23,7 @@ struct LeagueEntryResponseDTO: Decodable {
     let hotStreak: Bool
     
     func toDomain() -> LeagueEntry {
-        let domain = LeagueEntry(queueType: self.queueType, tier: self.tier, rank: self.rank, leaguePoints: self.leaguePoints, wins: self.wins, losses: self.losses)
+        let domain = LeagueEntry(queueType: self.queueType.rawValue, tier: self.tier, rank: self.rank, leaguePoints: self.leaguePoints, wins: self.wins, losses: self.losses)
         return domain
     }
 }
